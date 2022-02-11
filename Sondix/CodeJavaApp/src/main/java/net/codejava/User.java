@@ -10,38 +10,58 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false, unique = true, length = 45)
 	private String email;
-	
+
 	@Column(nullable = false, length = 64)
 	private String password;
-	
+
 	@Column(name = "first_name", nullable = false, length = 20)
 	private String firstName;
-	
+
 	@Column(name = "last_name", nullable = false, length = 20)
 	private String lastName;
-	
+
 	@Column(name = "pseudo", nullable = false, length = 20)
 	private String pseudo;
-	
+
 	@Column(name = "phone", nullable = false, length = 20)
 	private String phone;
-	
+
 	@Column(name = "socio", nullable = false, length = 255)
 	private String socio;
-	
+
 	@Column(name = "birth", nullable = false, length = 20)
 	private String birth;
-	
+
 	@Column(name = "sexe", nullable = false, length = 20)
 	private String sexe;
-	
+
+	@Column(name = "role", nullable = false, length = 20)
+	private String role = "Employe";
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public boolean hasRole(String roleName) {
+
+		if (role.equals(roleName)) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public String getPseudo() {
 		return pseudo;
 	}
@@ -121,7 +141,5 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	
-	
+
 }

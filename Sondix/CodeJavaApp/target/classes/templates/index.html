@@ -1,27 +1,70 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Accueil Sondix</title>
-<link rel="stylesheet" type="text/css"
-	href="/webjars/bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<title>Sondix- Plateforme de QCM en ligne</title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css" />
+	<link rel="icon" href="css/images/sondix_logo-woBG.png" />
+
 </head>
+
 <body>
-	<div class="container text-center">
-		<h1>Bienvenue dans l'application de sondage Sondix</h1>
-		<h3>
-			<a th:href="@{/users}">Liste des Utilisateur</a>
-		</h3>
-		<h3>
-			<a th:href="@{/register}">S'inscrire</a>
-		</h3>
-		<h3>
-			<a th:href="@{/login}">Se connecter</a>
-		</h3>
+
+
+	<h2>Bienvenue sur Sondix, votre plateforme de QCM en ligne</h2>
+	
+	<div class="conteneur" id="conteneur">
+	
+		<!-- PARTIE "STATIC" : deux panneaux qui bouge pas.
+		Leur but permet juste de cliquer sur les deux boutons qui redirigent vers d'autres pages.
+		-->
+		<div class="panneau-statique statique-register">
+			<form action="#">
+				<h1>Créer un compte</h1>
+				<br>
+				<button><a th:href="@{/register}"> S'inscrire </a></button>
+			</form>
+		</div>
+		
+		<div class="panneau-statique statique-login">
+			<form action="#">
+				<h1>Connexion</h1>
+				<br>
+				<button> <a th:href="@{/login}"> Se connecter </a></button>
+			</form>	
+		</div>
+	
+		
+ 		<!-- PARITE "SLIDE" : deux panneaux qui glisse gauche-droite/droite-gauche quand on clique 
+		sur un boutton.
+		-->
+		<div class="conteneur-overlay">
+			<div class="overlay">
+				<div class="panneau-mobile mobile-gauche">
+					<h1>Vous voilà de retour!</h1>
+					<p>Pour reprendre vos QCM favoris, connectez-vous à l'aide de vos identifiants</p>
+					<button class="fantome" id="boutonTransiConnexion">Connnexion</button>
+				</div>
+				<div class="panneau-mobile mobile-droite">
+					<h1>Bienvenue !</h1>
+					<p>Renseignez vos informations personnelles pour débuter votre aventure sur notre site.</p>
+					<button class="fantome" id="boutonTransiInscription">Inscription</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
+	<!-- Script JS pour l'animation entre les deux panneaux Connexion/Inscription -->
+	<script  src="./script.js"></script>
+  
+  	<!-- Le footer permet de mettre des informations simples concernant notre site (auteurs et versions ici) -->
+  	<!-- J'ai aussi mis dans le footer le raccourci pour accéder a la listes de toutes nos utilisateurs -->
+	<footer>
+        <p>©2022 - v1 Homepage(fonctionnel)- Groupe BNIK Bouchra - MENGUELTI Hacène - PISANO Vincent <a th:href="@{/users}">Liste des Utilisateur</a></p>
+    </footer>
+
 </body>
-</html>
+</html >

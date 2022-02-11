@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>List Users</title>
+<title>Liste des utilisateurs</title>
 <link rel="stylesheet" type="text/css"
 	href="/webjars/bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
@@ -36,6 +36,7 @@
 						<th>Categorie socio-professionnelle</th>
 						<th>Date de naissance</th>
 						<th>Sexe</th>
+						<th>Role</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -49,6 +50,7 @@
 						<td th:text="${user.socio}"></td>
 						<td th:text="${user.birth}"></td>
 						<td th:text="${user.sexe}"></td>
+						<td th:text="${user.role}"></td>
 					</tr>
 				</tbody>
 			</table>

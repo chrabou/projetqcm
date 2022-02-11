@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Accueil Sondix</title>
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container text-center">
+		<div>
+			<form th:action="@{/logout}" method="post">
+
+				<input type="submit" value="Déconnexion" />
+				<p>
+					Bienvenue 
+					sur la page des Employés
+				</p>
+
+			</form>
+		</div>
+		<div>
+			<h1>Liste des QCM</h1>
+			<h3>
+			<a th:href="@{/creation_qcm}">Créer QCM</a>
+		</h3>
+		</div>
+
+		<div>
+			<table class="table table-striped table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID QCM</th>
+						<th>Titre</th>
+						<th>Catégorie</th>
+						<th>Questions</th>
+						<th>Réponses 1</th>
+						<th>Statut</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="qcm: ${listQcm}">
+						<td th:text="${qcm.idQCM}"></td>
+						<td th:text="${qcm.titre}"></td>
+						<td th:text="${qcm.categorie}"></td>
+						<td th:text="${qcm.questions}"></td>
+						<td th:text="${qcm.getReponses1()}"></td>
+						<td th:text="${qcm.statut}"></td>
+						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
