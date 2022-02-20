@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sondix- Plateforme de QCM en ligne</title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css" />
+	<link rel="icon" href="styles/images/sondix_logo-woBG.png" />
+</head>
+
+
+<body>
+<div class="container text-center">
+		<div>
+			<h1>Création du QCM</h1>
+		</div>
+		<form th:action="@{/process_creation}" th:object="${qcm}"
+			method="post" style="max-width: 600px; margin: 0 auto;">
+			<div class="m-3">
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Titre :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{titre}" class="form-control"
+							minlength="3" required maxlength="50" />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Catégorie :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{categorie}" class="form-control"
+							minlength="3" required maxlength="50" />
+					</div>
+				</div>
+				
+					<div class="form-group row">
+					<label class="col-4 col-form-label">Question 1 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{questions[0]}" class="form-control"
+							minlength="3" required maxlength="50" />
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Reponses 1 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses1[0]}" class="form-control"
+							minlength="3" required maxlength="50" />
+							<input type="text" th:field="*{reponses1[1]}" class="form-control"
+							minlength="3" required maxlength="50" />
+							<input type="text" th:field="*{reponses1[2]}" class="form-control"
+							minlength="3" required maxlength="50" />
+							<input type="text" th:field="*{reponses1[3]}" class="form-control"
+							minlength="3" required maxlength="50" />
+					</div>
+				</div>
+
+				<div>
+					<button type="submit" class="btn btn-primary">Créer</button>
+				</div>
+				
+			</div>
+		</form>
+		<footer>
+        <p>©2022 - v1 Homepage(fonctionnel)- Groupe BNIK Bouchra - MENGUELTI Hacène - PISANO Vincent <a th:href="@{/users}">Liste des Utilisateurs</a></p>
+    </footer>
+	</div>
+</body>
+</html>
