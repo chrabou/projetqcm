@@ -1,0 +1,661 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	/*background: #FFFBFE;*/
+	background : crimson;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Montserrat', sans-serif;
+	height: 90%;
+	margin: -20px 0 50px;
+}
+
+h1 {
+	font-weight: bold;
+	margin: 0;
+}
+
+
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+a {
+	color: #FFFBFE;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+/* Gestion de l'esthétique des boutons(visuels et animations quand on passe la souris dessus/clique*/
+button {
+	border-radius: 20px;
+	border: 1px solid #45B69C;
+	background-color: #45B69C;
+	color: #FFFBFE;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+button:active {
+	transform: scale(0.95);
+}
+
+button:focus {
+	outline: none;
+}
+
+button.fantome {
+	background-color: transparent;
+	border-color: #FFFBFE;
+}
+/*--------------------------------------------------------------------------------------*/
+
+
+/* Gestion de l'esthétique des formulaires (form et input) */
+form {
+	background-color: #FFFBFE;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+/*--------------------------------------------------------------------------------------*/
+
+
+.conteneur {
+	background-color: #FFFBFE	;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
+}
+
+.panneau-statique {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+.statique-login {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+.conteneur.panneau-droite-actif .statique-login {
+	transform: translateX(100%);
+}
+
+.statique-register {
+	left: 0;
+	width: 50%;
+	opacity: 0;
+	z-index: 1;
+}
+
+.conteneur.panneau-droite-actif .statique-register {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
+}
+
+@keyframes show {
+	0%, 49.99% {
+		opacity: 0;
+		z-index: 1;
+	}
+	
+	50%, 100% {
+		opacity: 1;
+		z-index: 5;
+	}
+}
+
+.conteneur-overlay {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+.conteneur.panneau-droite-actif .conteneur-overlay{
+	transform: translateX(-100%);
+}
+
+.overlay {
+	background: #FFFFFF; 
+	
+	/*Degradé vers le clair
+	background: -webkit-linear-gradient(to right, #45B69C, #7ACDB9); 
+	background: linear-gradient(to right, #45B69C, #7ACDB9);
+	*/
+	/*Degradé vers du foncé - préféré pour l'instant*/
+	background: -webkit-linear-gradient(to right, #45B69C, #38947E); 
+	background: linear-gradient(to right, #45B69C, #38947E);
+		
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+  	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.conteneur.panneau-droite-actif .overlay {
+  	transform: translateX(50%);
+}
+
+.panneau-mobile {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.mobile-gauche {
+	transform: translateX(-20%);
+}
+
+.conteneur.panneau-droite-actif .mobile-gauche {
+	transform: translateX(0);
+}
+
+.mobile-droite {
+	right: 0;
+	transform: translateX(0);
+}
+
+.conteneur.panneau-droite-actif .mobile-droite {
+	transform: translateX(20%);
+}
+
+
+
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 8px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    /*z-index: 999;*/
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: blue;
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
+
+
+.conteneurSignUp{
+	display : flex;
+	flex-direction: row;
+}
+
+
+.droite { float:left; width:50%}
+.gauche { float: right; width:50%}
+
+.milieu {opacity : 0 ;}
+
+/*
+Article qui m'a aidé a regler le soucis de colonne
+https://openclassrooms.com/forum/sujet/mettre-deux-div-cote-a-cote
+.gauche{
+	display : flex;
+	flex-direction: column;
+	opacity : 1;
+}
+.droite{
+	display : flex;
+	flex-direction: column;
+	opacity : 1;
+}
+.milieu{
+	background : red;
+	opacity:0;
+}
+*/
+
+
+/* Gestion de la barre de naviguation*/
+.nav ul {
+	display : flex;	
+	flex-direction : row;
+   /* background: tomato; */
+}
+
+.nav a {
+    padding: 2em;
+    /*text-align:center;*/
+}
+
+/* PLEIN DE TEST SUR LE POSITIONNEMENT
+#htest{
+	background-color : red;
+}
+
+#htest2{
+	background-color : purple;
+}
+
+.nav {
+	background-color : aqua;
+}
+
+*/
+
+
+header {
+    background-color: #222;
+    color: #fff;
+    font-size: 8px;
+    top: 0 ;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+    height: 5%;
+}
+
+header p {
+    margin: 10px 0;
+}
+
+header i {
+    color: blue;
+}
+
+header a {
+	
+    color: #3c97bf;
+    text-decoration: none;
+}@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	/*background: #FFFBFE;*/
+	background : crimson;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Montserrat', sans-serif;
+	height: 90%;
+	margin: -20px 0 50px;
+}
+
+h1 {
+	font-weight: bold;
+	margin: 0;
+}
+
+
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+a {
+	color: #FFFBFE;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+button {
+	border-radius: 20px;
+	border: 1px solid #45B69C;
+	background-color: #45B69C;
+	color: #FFFBFE;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+button:active {
+	transform: scale(0.95);
+}
+
+button:focus {
+	outline: none;
+}
+
+button.fantome {
+	background-color: transparent;
+	border-color: #FFFBFE;
+}
+
+/* Gestion de l'esthétique des formulaires (form et input) */
+form {
+	background-color: #FFFBFE;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+/*--------------------------------------------------------------------------------------*/
+
+
+.conteneur {
+	background-color: #FFFBFE	;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
+}
+
+.panneau-statique {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+.statique-login {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+.conteneur.panneau-droite-actif .statique-login {
+	transform: translateX(100%);
+}
+
+.statique-register {
+	left: 0;
+	width: 50%;
+	opacity: 0;
+	z-index: 1;
+}
+
+.conteneur.panneau-droite-actif .statique-register {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
+}
+
+@keyframes show {
+	0%, 49.99% {
+		opacity: 0;
+		z-index: 1;
+	}
+	
+	50%, 100% {
+		opacity: 1;
+		z-index: 5;
+	}
+}
+
+.conteneur-overlay {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+.conteneur.panneau-droite-actif .conteneur-overlay{
+	transform: translateX(-100%);
+}
+
+.overlay {
+	background: #FFFFFF; 
+	
+	/*Degradé vers le clair
+	background: -webkit-linear-gradient(to right, #45B69C, #7ACDB9); 
+	background: linear-gradient(to right, #45B69C, #7ACDB9);
+	*/
+	/*Degradé vers du foncé - préféré pour l'instant*/
+	background: -webkit-linear-gradient(to right, #45B69C, #38947E); 
+	background: linear-gradient(to right, #45B69C, #38947E);
+		
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+  	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.conteneur.panneau-droite-actif .overlay {
+  	transform: translateX(50%);
+}
+
+.panneau-mobile {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.mobile-gauche {
+	transform: translateX(-20%);
+}
+
+.conteneur.panneau-droite-actif .mobile-gauche {
+	transform: translateX(0);
+}
+
+.mobile-droite {
+	right: 0;
+	transform: translateX(0);
+}
+
+.conteneur.panneau-droite-actif .mobile-droite {
+	transform: translateX(20%);
+}
+
+
+
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 8px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    /*z-index: 999;*/
+    height: 5%;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: blue;
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
+
+
+.conteneurSignUp{
+	display : flex;
+	flex-direction: row;
+}
+
+
+.droite { float:left; width:50%}
+.gauche { float: right; width:50%}
+
+.milieu {opacity : 0 ;}
+
+/*
+Article qui m'a aidé a regler le soucis de colonne
+https://openclassrooms.com/forum/sujet/mettre-deux-div-cote-a-cote
+.gauche{
+	display : flex;
+	flex-direction: column;
+	opacity : 1;
+}
+.droite{
+	display : flex;
+	flex-direction: column;
+	opacity : 1;
+}
+.milieu{
+	background : red;
+	opacity:0;
+}
+*/
+
+
+/* Gestion de la barre de naviguation*/
+.nav ul {
+	display : flex;	
+	flex-direction : row;
+   /* background: tomato; */
+}
+
+.nav a {
+    padding: 2em;
+    /*text-align:center;*/
+}
+
+/* PLEIN DE TEST SUR LE POSITIONNEMENT
+#htest{
+	background-color : red;
+}
+
+#htest2{
+	background-color : purple;
+}
+
+.nav {
+	background-color : aqua;
+}
+
+*/
+
+
+header {
+    background-color: #222;
+    color: #fff;
+    font-size: 8px;
+    top: 0 ;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+header p {
+    margin: 10px 0;
+}
+
+header i {
+    color: blue;
+}
+
+header a {
+	
+    color: #3c97bf;
+    text-decoration: none;
+}

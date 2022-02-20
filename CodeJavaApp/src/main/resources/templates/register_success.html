@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Inscription réussie</title>
-<link rel="stylesheet" type="text/css"
-	href="/webjars/bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div class="container text-center">
-		<h3>Vous vous êtes inscrit avec succès.</h3>
-		<h4>
-			<a th:href="@{/login}">Cliquez ici pour vous connecter</a>
-		</h4>
-	</div>
 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sondix- Plateforme de QCM en ligne</title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css" />
+	<link rel="icon" href="styles/images/sondix_logo-woBG.png" />
+</head>
+
+
+<body>
+
+	<h1>Vous vous êtes inscrit avec succès.</h1>
+	<div>
+		<br>
+		<button onclick="window.location.href = '/';">Cliquez ici pour vous connecter</button>
+		<button onclick="window.location.href = '/login';">TEST LOGINr</button>
+	</div>
+	
 </body>
 </html>

@@ -20,6 +20,14 @@ public class AppController {
 		return "index";
 	}
 	
+	/* ----- */
+	@GetMapping("test")
+	public String viewTestPage() {
+		return "userProfil";
+	}
+	
+	/* ----- */
+	
 	
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
@@ -27,6 +35,7 @@ public class AppController {
 		
 		return "signup_form";
 	}
+	
 	
 	@PostMapping("/process_register")
 	public String processRegister(User user) {

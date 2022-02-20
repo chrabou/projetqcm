@@ -7,9 +7,9 @@
 body {
 	background: #FFFBFE;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
@@ -62,8 +62,19 @@ button.fantome {
 	border-color: #FFFBFE;
 }
 
-
+/* Gestion de l'esthétique des formulaires (form et input) */
 form {
+	background-color: #FFFBFE;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+.formTest {
 	background-color: #FFFBFE;
 	display: flex;
 	align-items: center;
@@ -81,6 +92,13 @@ input {
 	margin: 8px 0;
 	width: 100%;
 }
+
+select {
+	background-color: #eee;
+}
+
+/*--------------------------------------------------------------------------------------*/
+
 
 .conteneur {
 	background-color: #FFFBFE	;
@@ -222,7 +240,7 @@ footer {
     left: 0;
     right: 0;
     text-align: center;
-    z-index: 999;
+    /*z-index: 999;*/
 }
 
 footer p {
@@ -234,6 +252,79 @@ footer i {
 }
 
 footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
+
+
+.conteneurSignUp{
+	display : flex;
+	flex-direction: row;
+}
+
+
+.droite { float:left; width:50%}
+.gauche { float: right; width:50%}
+
+.milieu {opacity : 0 ;}
+
+/*
+Article qui m'a aidé a regler le soucis de colonne
+https://openclassrooms.com/forum/sujet/mettre-deux-div-cote-a-cote
+.gauche{
+	display : flex;
+	flex-direction: column;
+	opacity : 1;
+}
+.droite{
+	display : flex;
+	flex-direction: column;
+	opacity : 1;
+}
+.milieu{
+	background : red;
+	opacity:0;
+}
+*/
+
+
+/* Gestion de la barre de naviguation*/
+.nav ul {
+	display : flex;	
+	flex-direction : row;
+   /* background: tomato; */
+}
+
+.nav a {
+    padding: 2em;
+    /*text-align:center;*/
+}
+
+
+/* Gestion du header - réalisation en cours donc pas vraiment implémenter */
+
+header {
+    background-color: #222;
+    color: #fff;
+    font-size: 8px;
+    top: 0 ;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+header p {
+    margin: 10px 0;
+}
+
+header i {
+    color: blue;
+}
+
+header a {
+	
     color: #3c97bf;
     text-decoration: none;
 }
