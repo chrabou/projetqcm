@@ -43,7 +43,7 @@ public class User {
 	private String sexe;
 
 	@Column(name = "role", nullable = false, length = 20)
-	private String role = "Employe";
+	private String role = "Internaute";
 
 	public String getRole() {
 		return role;

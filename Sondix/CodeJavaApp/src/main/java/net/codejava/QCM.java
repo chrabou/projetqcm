@@ -25,10 +25,21 @@ public class QCM {
 	private String categorie;
 
 	@Column(name = "statut", nullable = false, length = 50)
-	private String statut="Créer";
+	private String statut="Créé";
+	
+	@Column(name = "commentaire", nullable = true, length = 50)
+	private String commentaire;
 
 	public Long getIdQCM() {
 		return idQCM;
+	}
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
 	}
 
 	public void setIdQCM(Long idQCM) {
@@ -75,7 +86,7 @@ public class QCM {
 		this.reponses1 = reponses1;
 	}
 
-	@Column(name = "questions", nullable = false, length = 255)
+	@Column(name = "questions", nullable = false, length = 512)
 	@Convert(converter = StringListConverter.class)
 	private List<String> questions;
 	

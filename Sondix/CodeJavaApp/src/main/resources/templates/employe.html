@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8">
 <title>Accueil Sondix</title>
@@ -16,18 +17,23 @@
 			<form th:action="@{/logout}" method="post">
 
 				<input type="submit" value="Déconnexion" />
-				<p>
-					Bienvenue 
-					sur la page des Employés
-				</p>
-
+		
 			</form>
 		</div>
+		
+			<div>
+			<h3>Bienvenue dans la gestion des QCM </h3>
+				<span sec:authentication="principal.IdUser">IdUser</span>
+					<span sec:authentication="principal.FullName">FullName</span>
+					<span sec:authentication="principal.Username">Username</span>
+
+		</div>
+		
 		<div>
 			<h1>Liste des QCM</h1>
 			<h3>
-			<a th:href="@{/creation_qcm}">Créer QCM</a>
-		</h3>
+				<a th:href="@{/creation_qcm}">Créer QCM</a>
+			</h3>
 		</div>
 
 		<div>
@@ -40,7 +46,9 @@
 						<th>Questions</th>
 						<th>Réponses 1</th>
 						<th>Statut</th>
-						
+						<th>Commentaire</th>
+						<th>Supprimer</th>
+						<th>Mise en ligne</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -51,7 +59,25 @@
 						<td th:text="${qcm.questions}"></td>
 						<td th:text="${qcm.getReponses1()}"></td>
 						<td th:text="${qcm.statut}"></td>
+						<td th:text="${qcm.commentaire}"></td>
 						
+						<td>
+							<form th:action="@{/deleteData}" method="post">
+
+									<input type="text" name="idQCM" th:value="${qcm.idQCM}" hidden>
+								<input th:disabled="${qcm.statut} ne 'Créé'" type="submit" value="Supprimer">
+							</form>
+						</td>
+						
+						<td>
+							<form th:action="@{/processOnline}" method="post">
+
+									<input  type="text" name="titre" th:value="${qcm.titre}" hidden >
+								
+								
+								<input th:disabled="${qcm.statut} ne 'Créé'" type="submit" value="Demande">
+							</form>
+						</td>
 					</tr>
 				</tbody>
 			</table>
