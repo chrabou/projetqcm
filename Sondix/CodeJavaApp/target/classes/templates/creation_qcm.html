@@ -10,16 +10,22 @@
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container text-center">
+	<div class="container text-center">
+
 		<div>
-			<h1>Création du QCM</h1>
+			<form th:action="@{/retourEmploye}" method="post">
+				<input type="submit" value="Retour" />
+			</form>
+		</div>
+		<div>
+			<h1>Création du QCM </h1>
 		</div>
 		<form th:action="@{/process_creation}" th:object="${qcm}"
 			method="post" style="max-width: 600px; margin: 0 auto;">
 			<div class="m-3">
 
 				<div class="form-group row">
-					<label class="col-4 col-form-label">Titre :</label>
+					<h3 >Titre :</h3>
 					<div class="col-8">
 						<input type="text" th:field="*{titre}" class="form-control"
 							minlength="3" required maxlength="50" />
@@ -27,39 +33,216 @@
 				</div>
 
 				<div class="form-group row">
-					<label class="col-4 col-form-label">Catégorie :</label>
+					<h3>Catégorie :</h3>
 					<div class="col-8">
-						<input type="text" th:field="*{categorie}" class="form-control"
-							minlength="3" required maxlength="50" />
+						<!-- <input type="text" th:field="*{categorie}" class="form-control"
+							minlength="3" required maxlength="50" /> -->
+							<select class="form-control" th:field="*{categorie}"
+							required>
+							<option value="Animation Japonaise">Animation Japonaise</option>
+							<option value="Culture">Culture</option>
+							<option value="Cinéma">Cinéma</option>
+							<option value="Sport">Sport</option>
+							<option value="Théatre">Théatre</option>
+							<option value="Voyage">Voyage</option>
+						</select>
+							
+					</div>
+				</div>
+
+				<div th:each="question: ${nbqts}">
+				<div class="form-group row">
+				<h3>Question  </h3>
+				<h3 th:text="${questionStat.count}"></h3>
+					<div class="col-8">
+				<input type="text" th:field="*{questions[__${questionStat.index}__]}" class="form-control" minlength="3" required maxlength="50"  />
+				</div>	</div>
+				<div class="form-group row">
+				<h3>Réponses </h3><h3 th:text="${questionStat.count}"> </h3>
+				<div class="col-8">
+						<input type="text" th:field="*{reponses__${questionStat.count}__[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses__${questionStat.count}__[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses__${questionStat.count}__[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses__${questionStat.count}__[3]}" class="form-control" minlength="3" maxlength="50"   />
+				
+				</div>	</div>
+			</div>
+	<!-- 
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Question 1 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{questions[0]}" class="form-control" minlength="3" required maxlength="50"  />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Réponses 1 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses1[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses1[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses1[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses1[3]}" class="form-control" minlength="3" maxlength="50"   />
+					</div>
+				</div>
+			
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Question 2 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{questions[1]}" class="form-control" minlength="3" required maxlength="50"   />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Réponses 2:</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses2[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses2[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses2[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses2[3]}" class="form-control" minlength="3" maxlength="50"   />
+					</div>
+				</div>
+					
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Question 3 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{questions[2]}" class="form-control" minlength="3" required maxlength="50"   />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Réponses 3 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses3[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses3[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses3[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses3[3]}" class="form-control" minlength="3" maxlength="50"   />
 					</div>
 				</div>
 				
-					<div class="form-group row">
-					<label class="col-4 col-form-label">Question 1 :</label>
+				
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Question 4 :</label>
 					<div class="col-8">
-						<input type="text" th:field="*{questions[0]}" class="form-control"
-							minlength="3" required maxlength="50" />
+						<input type="text" th:field="*{questions[3]}" class="form-control" minlength="3" required maxlength="50"   />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Réponses 4 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses4[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses4[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses4[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses4[3]}" class="form-control" minlength="3" maxlength="50"   />
 					</div>
 				</div>
 				
 				<div class="form-group row">
-					<label class="col-4 col-form-label">Reponses 1 :</label>
+					<label class="col-4 col-form-label">Question 5 :</label>
 					<div class="col-8">
-						<input type="text" th:field="*{reponses1[0]}" class="form-control"
-							minlength="3" required maxlength="50" />
-							<input type="text" th:field="*{reponses1[1]}" class="form-control"
-							minlength="3" required maxlength="50" />
-							<input type="text" th:field="*{reponses1[2]}" class="form-control"
-							minlength="3" required maxlength="50" />
-							<input type="text" th:field="*{reponses1[3]}" class="form-control"
-							minlength="3" required maxlength="50" />
+						<input type="text" th:field="*{questions[4]}" class="form-control" minlength="3" required maxlength="50"   />
 					</div>
 				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Réponses 5 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses5[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses5[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses5[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses5[3]}" class="form-control" minlength="3" maxlength="50"   />
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Question 6 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{questions[5]}" class="form-control" minlength="3" required maxlength="50"   />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Réponses 6 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses6[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses6[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses6[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses6[3]}" class="form-control" minlength="3" maxlength="50"   />
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Question 7 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{questions[6]}" class="form-control" minlength="3" required maxlength="50"   />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Réponses 7 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses7[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses7[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses7[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses7[3]}" class="form-control" minlength="3" maxlength="50"   />
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Question 8 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{questions[7]}" class="form-control" minlength="3" required maxlength="50"   />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Réponses 8 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses8[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses8[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses8[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses8[3]}" class="form-control" minlength="3" maxlength="50"   />
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Question 9 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{questions[8]}" class="form-control" minlength="3" required maxlength="50"   />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Réponses 9 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses9[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses9[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses9[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses9[3]}" class="form-control" minlength="3" maxlength="50"   />
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Question 10 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{questions[9]}" class="form-control" minlength="3" required maxlength="50"   />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Réponses 10 :</label>
+					<div class="col-8">
+						<input type="text" th:field="*{reponses10[0]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses10[1]}" class="form-control" minlength="3" required maxlength="50"   />
+						<input type="text" th:field="*{reponses10[2]}" class="form-control" minlength="3" maxlength="50"   /> 
+						<input type="text" th:field="*{reponses10[3]}" class="form-control" minlength="3" maxlength="50"   />
+					</div>
+				</div> -->
 
 				<div>
 					<button type="submit" class="btn btn-primary">Créer</button>
 				</div>
-				
+
 			</div>
 		</form>
 	</div>

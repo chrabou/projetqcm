@@ -11,4 +11,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			  nativeQuery = true)
 	public User findByEmail2(String email);
 	
+	@Query( value = "SELECT count(*) FROM users u WHERE  u.role = 'Internaute'", 
+			  nativeQuery = true)
+	public String countTotalInternaute();
+	
 }

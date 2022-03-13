@@ -31,9 +31,35 @@
 		
 		<div>
 			<h1>Liste des QCM</h1>
-			<h3>
-				<a th:href="@{/creation_qcm}">Créer QCM</a>
-			</h3>
+									
+							<form th:action="@{/creation_qcm}" method="post">	
+			<div class="form-group row">
+			
+			
+
+			
+						
+					<label class="col-2 col-form-label">Nombre de questions : </label>
+					<div class="col-1">
+						<select name="nbqts" class="form-control" required>
+							<option value="1" >1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							
+						</select>
+					</div>
+			<input  type="submit" value="Créer QCM" style="color:green;font-size: x-large;font-weight: bold;">
+			
+				</div>
+					</form>
+				
 		</div>
 
 		<div>
@@ -43,11 +69,11 @@
 						<th>ID QCM</th>
 						<th>Titre</th>
 						<th>Catégorie</th>
-						<th>Questions</th>
-						<th>Réponses 1</th>
+						
 						<th>Statut</th>
 						<th>Commentaire</th>
 						<th>Supprimer</th>
+						<th>Modification</th>
 						<th>Mise en ligne</th>
 					</tr>
 				</thead>
@@ -56,8 +82,7 @@
 						<td th:text="${qcm.idQCM}"></td>
 						<td th:text="${qcm.titre}"></td>
 						<td th:text="${qcm.categorie}"></td>
-						<td th:text="${qcm.questions}"></td>
-						<td th:text="${qcm.getReponses1()}"></td>
+						
 						<td th:text="${qcm.statut}"></td>
 						<td th:text="${qcm.commentaire}"></td>
 						
@@ -65,8 +90,14 @@
 							<form th:action="@{/deleteData}" method="post">
 
 									<input type="text" name="idQCM" th:value="${qcm.idQCM}" hidden>
-								<input th:disabled="${qcm.statut} ne 'Créé'" type="submit" value="Supprimer">
+								<input th:disabled="${qcm.statut} eq 'Demande de mise en ligne' or  ${qcm.statut} eq 'Validé' or  ${qcm.statut} eq 'Archivé'" type="submit" value="Supprimer">
 							</form>
+						</td>
+						
+						<td>
+							
+							<!-- <a  th:href="@{/detailQcm/{titre}(titre=${qcm.titre})}">Modifier</a> -->
+							<a th:hidden="${qcm.statut} eq 'Demande de mise en ligne' or  ${qcm.statut} eq 'Validé' or  ${qcm.statut} eq 'Archivé'" th:href="@{/modifierQcm/{titre}(titre=${qcm.titre})}">Modifier</a>
 						</td>
 						
 						<td>
@@ -75,7 +106,7 @@
 									<input  type="text" name="titre" th:value="${qcm.titre}" hidden >
 								
 								
-								<input th:disabled="${qcm.statut} ne 'Créé'" type="submit" value="Demande">
+								<input th:disabled="${qcm.statut} eq 'Demande de mise en ligne' or  ${qcm.statut} eq 'Validé' or  ${qcm.statut} eq 'Archivé'" type="submit" value="Demande">
 							</form>
 						</td>
 					</tr>

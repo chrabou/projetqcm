@@ -14,20 +14,23 @@
 	<div class="container text-center">
 
 		<div>
-			<form th:action="@{/retourResponsable}" method="post">
+			<form th:action="@{/retourDirecteur}" method="post">
 				<input type="submit" value="Retour" />
 			</form>
 		</div>
 		<div>
-			<h1> Sondage </h1>
-			<h1 th:text="${QCM.titre}"></h1>
+			<h2> Détails Statistiques du Sondage </h2>
+			<h2 th:text="${QCM.titre}"></h2>
 		</div>
 
 		<div th:each="question: ${QCM.questions}">
-			<h3>Question </h3>
-			<h3 th:text="${questionStat.count}"></h3>
-				<h3 th:text="${question}"></h3>
+			<label style="font-size: xx-large;">Question </label>
+			<label style="font-size: xx-large;" th:text="${questionStat.count}"></label>
+				<h4 th:text="${question}"></h4>
 			<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}">
+		
+				<label th:text="${TotalStat[__questionStat.index__][reponseStat.index]}" style="color:green;font-weight: bold;"></label>
+				<label style="color:green;font-weight: bold;">% </label>
 				<label th:text="${reponse}"></label>
 			</div>
 		</div>

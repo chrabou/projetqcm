@@ -14,7 +14,7 @@
 	<div class="container text-center">
 
 		<div>
-			<form th:action="@{/retourResponsable}" method="post">
+			<form th:action="@{/retourInternaute}" method="post">
 				<input type="submit" value="Retour" />
 			</form>
 		</div>
@@ -28,6 +28,8 @@
 			<h3 th:text="${questionStat.count}"></h3>
 				<h3 th:text="${question}"></h3>
 			<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}">
+				  <label th:hidden="${reponseStat.count} ne ${Reponse[__${questionStat.index}__]}" style="color:green;font-weight: bold;">  Réponse choisie </label>
+				
 				<label th:text="${reponse}"></label>
 			</div>
 		</div>

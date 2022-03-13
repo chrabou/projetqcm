@@ -62,7 +62,7 @@ button.fantome {
 	border-color: #FFFBFE;
 }
 
-/* Gestion de l'esthÃ©tique des formulaires (form et input) */
+/* Gestion de l'esthétique des formulaires (form et input) */
 form {
 	background-color: #FFFBFE;
 	display: flex;
@@ -173,11 +173,11 @@ select {
 .overlay {
 	background: #FFFFFF; 
 	
-	/*DegradÃ© vers le clair
+	/*Degradé vers le clair
 	background: -webkit-linear-gradient(to right, #45B69C, #7ACDB9); 
 	background: linear-gradient(to right, #45B69C, #7ACDB9);
 	*/
-	/*DegradÃ© vers du foncÃ© - prÃ©fÃ©rÃ© pour l'instant*/
+	/*Degradé vers du foncé - préféré pour l'instant*/
 	background: -webkit-linear-gradient(to right, #45B69C, #38947E); 
 	background: linear-gradient(to right, #45B69C, #38947E);
 		
@@ -269,7 +269,7 @@ footer a {
 .milieu {opacity : 0 ;}
 
 /*
-Article qui m'a aidÃ© a regler le soucis de colonne
+Article qui m'a aidé a regler le soucis de colonne
 https://openclassrooms.com/forum/sujet/mettre-deux-div-cote-a-cote
 .gauche{
 	display : flex;
@@ -301,7 +301,7 @@ https://openclassrooms.com/forum/sujet/mettre-deux-div-cote-a-cote
 }
 
 
-/* Gestion du header - rÃ©alisation en cours donc pas vraiment implÃ©menter */
+/* Gestion du header - réalisation en cours donc pas vraiment implémenter */
 
 header {
     background-color: #222;

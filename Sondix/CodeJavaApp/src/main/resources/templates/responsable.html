@@ -60,9 +60,9 @@
 							<form th:action="@{/decision}" method="post">
 								<input type="text" name="titre" th:value="${qcm.titre}" hidden>
 								<input type="text" name="commentaire" placeholder="Commentaire"
-									minlength="2" required maxlength="50">
-									 <input th:disabled="${qcm.statut} ne 'Demande de mise en ligne'" type="submit" name="action"	value="Validé" th:value="Validé"> 
-									 <input th:disabled="${qcm.statut} ne 'Demande de mise en ligne'" type="submit"	name="action" value="Refusé" th:value="Refusé">
+									minlength="2" required maxlength="50" th:hidden="${qcm.statut} ne 'Demande de mise en ligne'">
+									 <input th:hidden="${qcm.statut} ne 'Demande de mise en ligne'" type="submit" name="action"	value="Validé" th:value="Validé"> 
+									 <input th:hidden="${qcm.statut} ne 'Demande de mise en ligne'" type="submit"	name="action" value="Refusé" th:value="Refusé">
 
 							</form>
 						</td>

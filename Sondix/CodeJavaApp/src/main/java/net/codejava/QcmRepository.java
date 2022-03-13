@@ -19,12 +19,31 @@ public interface QcmRepository extends JpaRepository<QCM, Long> {
 			  nativeQuery = true)
 	public List<QCM> findAllNotStatutCreate();
 	
-	@Query( value = "select * from QCM where idqcm not in (select idqcm from QCMRepondu where id_user) and  statut ='Validé'", 
+	@Query( value = "select * from QCM where idqcm not in (select idqcm from QCMRepondu where id_user = ?1) and  statut ='Validé'", 
+			  nativeQuery = true)
+	public List<QCM> findAllStatutValidateForInternaute(Long id);
+	
+	@Query( value = "select * from QCM where idqcm  in (select idqcm from QCMRepondu where id_user = ?1) and  statut ='Validé'", 
+			  nativeQuery = true)
+	public List<QCM> findAllStatutNotValidateForInternaute(Long id);
+	
+	
+	@Query( value = "select * from QCM where  statut ='Validé' or statut='Archivé'", 
 			  nativeQuery = true)
 	public List<QCM> findAllStatutValidate();
 	
-	@Query( value = "select * from QCM where idqcm not in (select idqcm from QCMRepondu where id_user = ?1) and  statut ='Validé'", 
-            nativeQuery = true)
-  public List<QCM> findAllStatutValidateForInternaute(Long id);
+	@Query( value = "select COUNT(*) from QCM where statut ='Validé'", 
+			  nativeQuery = true)
+	public String findCountQCMValidate();
+	
+	
+	@Query( value = "SELECT titre FROM QCM natural join QCMRepondu GROUP BY titre ORDER BY COUNT(*) DESC limit 1 ;", 
+			  nativeQuery = true)
+	public String findMostPopular();
 		
+	@Query( value = "SELECT titre FROM QCM natural join QCMRepondu GROUP BY titre ORDER BY COUNT(*) ASC limit 1 ;", 
+			  nativeQuery = true)
+	public String findWorstPopular();
+	
+	
 }

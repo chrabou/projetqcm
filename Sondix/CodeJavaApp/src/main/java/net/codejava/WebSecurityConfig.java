@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(authenticationProvider());
+		auth.authenticationProvider(authenticationProvider());		
 	}
 
 	@Override
@@ -51,6 +51,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/directeur").authenticated()
 			.antMatchers("/responsable").authenticated()
 			.antMatchers("/employe").authenticated()
+			.antMatchers("/creation_qcm").authenticated()
+			.antMatchers("/process_creation").authenticated()
+			.antMatchers("/process_modification").authenticated()
+			.antMatchers("/faireQcm").authenticated()
+			.antMatchers("/detailQcm").authenticated()
+			.antMatchers("/detailStatQcm").authenticated()
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()

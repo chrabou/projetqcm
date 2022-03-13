@@ -21,10 +21,14 @@
 			</form>
 		</div>
 		<div>
-			<h3>Bienvenue sur la page de l'internaute</h3>
+			<h1>Bienvenue sur la page de l'internaute</h1>
+			
 			<span sec:authentication="principal.IdUser">IdUser</span> <span
 				sec:authentication="principal.FullName">FullName</span> <span
 				sec:authentication="principal.Username">Username</span>
+				<span ></span><br>
+				<label style="color:green;font-weight: bold;font-size: xx-large;">Points de fidélité : </label>
+			<label style="color:green;font-weight: bold;font-size: xx-large;" th:text="${fidelite}"></label>
 		</div>
 		<div>
 			<h3>Liste des QCM disponible</h3>
@@ -46,6 +50,33 @@
 						<td th:text="${qcm.titre}"></td>
 						<td th:text="${qcm.categorie}"></td>
 						<td><a th:href="@{/faireQcm/{titre}(titre=${qcm.titre})}">Faire</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		
+		<div>
+			<h3>Liste des QCM déjà fait </h3>
+
+		</div>
+
+		<div>
+			<table class="table table-striped table-bordered">
+				<thead class="thead-dark">
+					<tr>
+
+						<th>Titre</th>
+						<th>Catégorie</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="qcm: ${listQcmFait}">
+						<td th:text="${qcm.titre}"></td>
+						<td th:text="${qcm.categorie}"></td>
+						<td><a th:href="@{/voirQcm/{titre}(titre=${qcm.titre})}">Voire</a>
 						</td>
 					</tr>
 				</tbody>
