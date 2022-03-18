@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Accueil Sondix</title>
+<title>Modifier QCM Employé</title>
 <link rel="stylesheet" type="text/css"
 	href="/webjars/bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
@@ -11,7 +11,6 @@
 </head>
 <body>
 	<div class="container text-center">
-
 		<div>
 			<form th:action="@{/retourEmploye}" method="post">
 				<input type="submit" value="Retour" />
@@ -20,231 +19,52 @@
 		<div>
 			<h1>Modification du QCM</h1>
 		</div>
-		<form th:action="@{/process_modification}"   th:object="${modifQCM}"
+		<form th:action="@{/process_modification}" th:object="${modifQCM}"
 			method="post" style="max-width: 600px; margin: 0 auto;">
-			
-			
 			<div class="m-3">
-				<input  type="text" name="titreancien" th:value="${QCM.titre}" hidden >
+				<input type="text" name="titreancien" th:value="${QCM.titre}" hidden>
 				<div class="form-group row">
 					<label class="col-4 col-form-label">Titre :</label>
 					<div class="col-8">
-						<input type="text" th:value="${QCM.titre}" name="titre" class="form-control"
-							minlength="3" required maxlength="50" />
+						<input type="text" th:value="${QCM.titre}" name="titre"
+							class="form-control" minlength="3" required maxlength="50" />
 					</div>
 				</div>
-
 				<div class="form-group row">
 					<label class="col-4 col-form-label">Catégorie :</label>
 					<div class="col-8">
-						<!--  <input type="text"  class="form-control"
-							minlength="3" required maxlength="50" />-->
-							<select class="form-control" name="categorie"  th:value="${QCM.categorie}"
-							required>
-							<option value="Animation Japonaise" th:selected="${QCM.categorie} eq 'Animation Japonaise'">Animation Japonaise</option>
-							<option value="Culture" th:selected="${QCM.categorie} eq 'Culture'">Culture</option>
+						<select class="form-control" name="categorie"
+							th:value="${QCM.categorie}" required>
+							<option value="Animation Japonaise"
+								th:selected="${QCM.categorie} eq 'Animation Japonaise'">Animation
+								Japonaise</option>
+							<option value="Culture"
+								th:selected="${QCM.categorie} eq 'Culture'">Culture</option>
 							<option value="Cinéma" th:selected="${QCM.categorie} eq 'Cinéma'">Cinéma</option>
 							<option value="Sport" th:selected="${QCM.categorie} eq 'Sport'">Sport</option>
-							<option value="Théatre" th:selected="${QCM.categorie} eq 'Théatre'">Théatre</option>
+							<option value="Théatre"
+								th:selected="${QCM.categorie} eq 'Théatre'">Théatre</option>
 							<option value="Voyage" th:selected="${QCM.categorie} eq 'Voyage'">Voyage</option>
 						</select>
-							
-							
 					</div>
 				</div>
-				
 				<div th:each="question: ${QCM.questions}">
-				<h3>Question</h3>
-				<h3 th:text="${questionStat.count}"></h3>
-				
-				
-					<input type="text" id="reponseStat.index" th:name="questions" th:value="${question}" class="form-control" minlength="3" required maxlength="50"> 
-					
-				<h3>Réponses </h3>
-				<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}" th:with="id=${questionStat.index}">
-				
-					<input type="text" id="reponseStat.index" th:name="reponses__${questionStat.count}__" th:value="${reponse}" class="form-control" minlength="3" required maxlength="50"> 
-					
-				</div>
-			</div>
-				
-				<!--  
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Question 1 :</label>
-					<div class="col-8">
-						<input type="text" th:name="questions[0]" th:value="${QCM.questions[0]}" class="form-control" minlength="3" required maxlength="50"  />
+					<h3>Question</h3>
+					<h3 th:text="${questionStat.count}"></h3>
+					<input type="text" id="reponseStat.index" th:name="questions"
+						th:value="${question}" class="form-control" minlength="3" required
+						maxlength="50">
+					<h3>Réponses</h3>
+					<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}"
+						th:with="id=${questionStat.index}">
+						<input type="text" id="reponseStat.index"
+							th:name="reponses__${questionStat.count}__" th:value="${reponse}"
+							class="form-control" minlength="3" required maxlength="50">
 					</div>
 				</div>
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Réponses 1 :</label>
-					<div class="col-8">
-						<input type="text" th:name="reponses1[0]"  th:value="${QCM.reponses1[0]}"class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses1[1]"  th:value="${QCM.reponses1[1]}"class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses1[2]" class="form-control" minlength="3" maxlength="50"   /> 
-						<input type="text" th:name="reponses1[3]" class="form-control" minlength="3" maxlength="50"   />
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Question 2 :</label>
-					<div class="col-8">
-						<input type="text" th:name="questions[1]"  th:value="${QCM.questions[1]}" class="form-control" minlength="3" required maxlength="50"   />
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Réponses 2:</label>
-					<div class="col-8">
-						<input type="text" th:name="reponses2[0]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses2[1]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses2[2]" class="form-control" minlength="3" maxlength="50"   /> 
-						<input type="text" th:name="reponses2[3]" class="form-control" minlength="3" maxlength="50"   />
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Question 3 :</label>
-					<div class="col-8">
-						<input type="text" th:name="questions[2]" th:value="${QCM.questions[2]}" class="form-control" minlength="3" required maxlength="50"   />
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Réponses 3 :</label>
-					<div class="col-8">
-						<input type="text" th:name="reponses3[0]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses3[1]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses3[2]" class="form-control" minlength="3" maxlength="50"   /> 
-						<input type="text" th:name="reponses3[3]" class="form-control" minlength="3" maxlength="50"   />
-					</div>
-				</div>
-				
-				
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Question 4 :</label>
-					<div class="col-8">
-						<input type="text" th:name="questions[3]" th:value="${QCM.questions[3]}" class="form-control" minlength="3" required maxlength="50"   />
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Réponses 4 :</label>
-					<div class="col-8">
-						<input type="text" th:name="reponses4[0]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses4[1]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses4[2]" class="form-control" minlength="3" maxlength="50"   /> 
-						<input type="text" th:name="reponses4[3]" class="form-control" minlength="3" maxlength="50"   />
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Question 5 :</label>
-					<div class="col-8">
-						<input type="text" th:name="questions[4]" th:value="${QCM.questions[4]}" class="form-control" minlength="3" required maxlength="50"   />
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Réponses 5 :</label>
-					<div class="col-8">
-						<input type="text" th:name="reponses5[0]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses5[1]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses5[2]" class="form-control" minlength="3" maxlength="50"   /> 
-						<input type="text" th:name="reponses5[3]" class="form-control" minlength="3" maxlength="50"   />
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Question 6 :</label>
-					<div class="col-8">
-						<input type="text" th:name="questions[5]"  th:value="${QCM.questions[5]}" class="form-control" minlength="3" required maxlength="50"   />
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Réponses 6 :</label>
-					<div class="col-8">
-						<input type="text" th:name="reponses6[0]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses6[1]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses6[2]" class="form-control" minlength="3" maxlength="50"   /> 
-						<input type="text" th:name="reponses6[3]" class="form-control" minlength="3" maxlength="50"   />
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Question 7 :</label>
-					<div class="col-8">
-						<input type="text" th:name="questions[6]" th:value="${QCM.questions[6]}" class="form-control" minlength="3" required maxlength="50"   />
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Réponses 7 :</label>
-					<div class="col-8">
-						<input type="text" th:name="reponses7[0]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses7[1]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses7[2]" class="form-control" minlength="3" maxlength="50"   /> 
-						<input type="text" th:name="reponses7[3]" class="form-control" minlength="3" maxlength="50"   />
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Question 8 :</label>
-					<div class="col-8">
-						<input type="text" th:name="questions[7]" th:value="${QCM.questions[7]}" class="form-control" minlength="3" required maxlength="50"   />
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Réponses 8 :</label>
-					<div class="col-8">
-						<input type="text" th:name="reponses8[0]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses8[1]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses8[2]" class="form-control" minlength="3" maxlength="50"   /> 
-						<input type="text" th:name="reponses8[3]" class="form-control" minlength="3" maxlength="50"   />
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Question 9 :</label>
-					<div class="col-8">
-						<input type="text" th:name="questions[8]" th:value="${QCM.questions[8]}" class="form-control" minlength="3" required maxlength="50"   />
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Réponses 9 :</label>
-					<div class="col-8">
-						<input type="text" th:name="reponses9[0]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses9[1]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses9[2]" class="form-control" minlength="3" maxlength="50"   /> 
-						<input type="text" th:name="reponses9[3]" class="form-control" minlength="3" maxlength="50"   />
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Question 10 :</label>
-					<div class="col-8">
-						<input type="text" th:name="questions[9]" th:value="${QCM.questions[9]}" class="form-control" minlength="3" required maxlength="50"   />
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Réponses 10 :</label>
-					<div class="col-8">
-						<input type="text" th:name="reponses10[0]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses10[1]" class="form-control" minlength="3" required maxlength="50"   />
-						<input type="text" th:name="reponses10[2]" class="form-control" minlength="3" maxlength="50"   /> 
-						<input type="text" th:name="reponses10[3]" class="form-control" minlength="3" maxlength="50"   />
-					</div>
-				</div>
--->
 				<div>
 					<button type="submit" class="btn btn-primary">Valider</button>
 				</div>
-
 			</div>
 		</form>
 	</div>

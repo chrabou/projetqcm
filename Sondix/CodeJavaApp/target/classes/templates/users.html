@@ -14,7 +14,7 @@
 		<div>
 			<form th:action="@{/logout}" method="post">
 				<p>
-					Bienvenue  <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+					Bienvenue <b>[[${#request.userPrincipal.principal.fullName}]]</b>
 				</p>
 				<input type="submit" value="Déconnexion" />
 			</form>

@@ -1,109 +1,103 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-	<meta charset="UTF-8">
-	<title>Sondix - connexion</title>
-	<link rel="stylesheet" type="text/css" href="styles/style.css" />
-	<link rel="icon" href="styles/images/sondix_logo-woBG.png" />
+<meta charset="UTF-8">
+<title>Sondix - connexion</title>
+<link rel="stylesheet" type="text/css" href="styles/style.css" />
+<link rel="icon" href="styles/images/sondix_logo-woBG.png" />
 </head>
-
-
-
 <body>
-	
-	
-	
 	<h1>Inscrivez-vous</h1>
 	<br>
 	<div class="conteneur">
-		
-	<form th:action="@{/process_register}" th:object="${user}" method="post" >
-	<div class="conteneurSignUp" >	
-			<!-- Partie -->
-			<div class="droite">
-
-				<div class="labeletinput">
-					<label class="label-formulaire">Pseudo :</label>
-					<input type="text" th:field="*{pseudo}" class="form-control" minlength="2" required maxlength="20"/>
-					
+		<form th:action="@{/process_register}" th:object="${user}"
+			method="post">
+			<div class="conteneurSignUp">
+				<!-- Partie -->
+				<div class="droite">
+					<div class="labeletinput">
+						<label class="label-formulaire">Pseudo :</label> <input
+							type="text" th:field="*{pseudo}" class="form-control"
+							minlength="2" required maxlength="20" />
+					</div>
+					<div class="labeletinput">
+						<label class="label-formulaire">Nom :</label> <input type="text"
+							th:field="*{lastName}" class="form-control" required
+							minlength="2" maxlength="20" />
+					</div>
+					<div class="labeletinput">
+						<label class="label-formulaire">Prénom :</label> <input
+							type="text" th:field="*{firstName}" class="form-control" required
+							minlength="2" maxlength="20" />
+					</div>
+					<div class="labeletinput">
+						<label class="label-formulaire">Mail : </label> <input
+							type="email" th:field="*{email}" class="form-control" required />
+					</div>
+					<div class="labeletinput">
+						<label class="label-formulaire">Mot de passe : </label> <input
+							type="password" th:field="*{password}" class="form-control"
+							required minlength="6" maxlength="10" />
+					</div>
 				</div>
-
-				<div class="labeletinput">
-					<label class="label-formulaire">Nom :</label>
-					<input type="text" th:field="*{lastName}" class="form-control" required minlength="2" maxlength="20"/>
+				<div class="milieu">
+					<div>
+						<label class="labelEspace">Espace</label>
+					</div>
 				</div>
-
-				<div class="labeletinput">
-					<label class="label-formulaire">Prénom :</label>
-					<input type="text" th:field="*{firstName}" class="form-control" required minlength="2" maxlength="20"/>
-				</div>
-
-
-
-				<div class="labeletinput">
-					<label class="label-formulaire">Mail : </label>
-					<input type="email" th:field="*{email}" class="form-control" required />
-		
-				</div>
-
-				<div class="labeletinput">
-					<label class="label-formulaire">Mot de passe : </label>
-					<input type="password" th:field="*{password}" class="form-control" required minlength="6" maxlength="10" />
+				<div class="gauche">
+					<div class="labeletinput">
+						<label class="label-formulaire">Téléphone : </label> <input
+							type="tel" class="form-control" th:field="*{phone}" required
+							placeholder="01 23 45 67 89" minlength="10" maxlength="10" />
+					</div>
+					<br> <br>
+					<div class="labeletinput">
+						<label class="label-formulaire">Catégorie
+							socio-professionnelle : </label> <select name="socio"
+							class="form-control" th:field="*{socio}" required>
+							<option value="Agriculteurs exploitants">Agriculteurs
+								exploitants</option>
+							<option value="Artisans, commerçants et chefs d’entreprise">Artisans,
+								commerçants et chefs d’entreprise</option>
+							<option value="Cadres et professions intellectuelles supérieures">Cadres
+								et professions intellectuelles supérieures</option>
+							<option value="Professions Intermédiaires">Professions
+								Intermédiaires</option>
+							<option value="Employés">Employés</option>
+							<option value="Ouvriers">Ouvriers</option>
+						</select>
+					</div>
+					<br>
+					<div class="labeletinput">
+						<label class="label-formulaire">Date de naissance : </label> <input
+							type="date" class="form-control" min="1900-01-01"
+							max="2011-01-01" th:field="*{birth}" required />
+					</div>
+					<br> <br>
+					<div class="labeletinput">
+						<label class="label-formulaire">Sexe : </label> <select
+							name="sexe" class="form-control" th:field="*{sexe}" required>
+							<option value="Homme">Homme</option>
+							<option value="Femme">Femme</option>
+						</select>
+					</div>
+					<br>
+					<div>
+						<button type="submit" class="btn btn-primary">S'inscrire</button>
+					</div>
 				</div>
 			</div>
-			
-			<div class="milieu"> 
-				<div>
-					<label class="labelEspace">Espace</label>
-				</div>
-			</div> 
-			<div class="gauche">
-			
-				<div class="labeletinput">
-					<label class="label-formulaire">Téléphone : </label>
-					<input type="tel" class="form-control" th:field="*{phone}"required placeholder="01 23 45 67 89" minlength="10" maxlength="10" />
-				</div>	
-				<br><br>
-				<div class="labeletinput">
-					<label class="label-formulaire">Catégorie socio-professionnelle : </label>
-					<select name="socio" class="form-control" th:field="*{socio}" required>
-						<option value="Agriculteurs exploitants">Agriculteurs exploitants</option>
-						<option value="Artisans, commerçants et chefs d’entreprise">Artisans, commerçants et chefs d’entreprise</option>
-						<option value="Cadres et professions intellectuelles supérieures">Cadres et professions intellectuelles supérieures</option>
-						<option value="Professions Intermédiaires">Professions Intermédiaires</option>
-						<option value="Employés">Employés</option>
-						<option value="Ouvriers">Ouvriers</option>
-					</select>
-				</div>
-				<br>
-				<div class="labeletinput">
-					<label class="label-formulaire">Date de naissance : </label>
-					<input type="date" class="form-control" min="1900-01-01" max="2011-01-01" th:field="*{birth}" required  />
-				</div>
-				<br><br>
-				<div class="labeletinput">
-					<label class="label-formulaire">Sexe : </label>
-					<select name="sexe" class="form-control" th:field="*{sexe}" required>
-						<option value="Homme">Homme</option>
-						<option value="Femme">Femme</option>
-					</select>
-				</div>
-				<br>
-
-				<div>
-					<button type="submit" class="btn btn-primary">S'inscrire</button>
-				</div>
-			
-			</div>
-		</div >	
 		</form>
 	</div>
-	<br><br>
-	
-	<button> <a th:href="@{/}">Retour au menu principal </a></button>
+	<br>
+	<br>
+	<button>
+		<a th:href="@{/}">Retour au menu principal </a>
+	</button>
 	<footer>
-        <p>©2022 - v1 Page d'inscription (fonctionnel)- Groupe BNIK Bouchra - MENGUELTI Hacène - PISANO Vincent </p>
-    </footer>
+		<p>©2022 - v1 Page d'inscription (fonctionnel)- Groupe BNIK
+			Bouchra - MENGUELTI Hacène - PISANO Vincent</p>
+	</footer>
 </body>
 </html>

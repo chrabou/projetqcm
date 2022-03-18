@@ -3,7 +3,7 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8">
-<title>Accueil Sondix</title>
+<title>Détail Statistique QCM Directeur</title>
 <link rel="stylesheet" type="text/css"
 	href="/webjars/bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
@@ -19,49 +19,23 @@
 			</form>
 		</div>
 		<div>
-			<h2> Détails Statistiques du Sondage </h2>
+			<h2>Détails Statistiques du Sondage</h2>
 			<h2 th:text="${QCM.titre}"></h2>
 		</div>
 
 		<div th:each="question: ${QCM.questions}">
-			<label style="font-size: xx-large;">Question </label>
-			<label style="font-size: xx-large;" th:text="${questionStat.count}"></label>
-				<h4 th:text="${question}"></h4>
+			<label style="font-size: xx-large;">Question </label> <label
+				style="font-size: xx-large;" th:text="${questionStat.count}"></label>
+			<h4 th:text="${question}"></h4>
 			<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}">
-		
-				<label th:text="${TotalStat[__questionStat.index__][reponseStat.index]}" style="color:green;font-weight: bold;"></label>
-				<label style="color:green;font-weight: bold;">% </label>
-				<label th:text="${reponse}"></label>
+
+				<label
+					th:text="${TotalStat[__questionStat.index__][reponseStat.index]}"
+					style="color: green; font-weight: bold;"></label> <label
+					style="color: green; font-weight: bold;">% </label> <label
+					th:text="${reponse}"></label>
 			</div>
 		</div>
-
-		<!--  <div>
-			<table class="table table-striped table-bordered">
-				<thead class="thead-dark">
-					<tr>
-						<th>ID QCM</th>
-						<th>Titre</th>
-						<th>Catégorie</th>
-						<th>Questions</th>
-						<th>Reponses</th>
-
-
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="reponse: ${QCM.reponses1}">
-						<td th:text="${QCM.idQCM}"></td>
-						<td th:text="${QCM.titre}"></td>
-						<td th:text="${QCM.categorie}"></td>
-						<td th:text="${QCM.questions}"></td>
-						<td th:text="${reponse}"></td>
-
-
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		-->
 	</div>
 </body>
 </html>

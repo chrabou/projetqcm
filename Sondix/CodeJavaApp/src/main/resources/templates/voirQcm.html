@@ -3,7 +3,7 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8">
-<title>Accueil Sondix</title>
+<title>Voir QCM Responsable</title>
 <link rel="stylesheet" type="text/css"
 	href="/webjars/bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
@@ -19,48 +19,21 @@
 			</form>
 		</div>
 		<div>
-			<h1> Sondage </h1>
+			<h1>Sondage</h1>
 			<h1 th:text="${QCM.titre}"></h1>
 		</div>
 
 		<div th:each="question: ${QCM.questions}">
-			<h3>Question </h3>
+			<h3>Question</h3>
 			<h3 th:text="${questionStat.count}"></h3>
-				<h3 th:text="${question}"></h3>
+			<h3 th:text="${question}"></h3>
 			<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}">
-				  <label th:hidden="${reponseStat.count} ne ${Reponse[__${questionStat.index}__]}" style="color:green;font-weight: bold;">  Réponse choisie </label>
-				
+				<label
+					th:hidden="${reponseStat.count} ne ${Reponse[__${questionStat.index}__]}"
+					style="color: green; font-weight: bold;"> Réponse choisie </label>
 				<label th:text="${reponse}"></label>
 			</div>
 		</div>
-
-		<!--  <div>
-			<table class="table table-striped table-bordered">
-				<thead class="thead-dark">
-					<tr>
-						<th>ID QCM</th>
-						<th>Titre</th>
-						<th>Catégorie</th>
-						<th>Questions</th>
-						<th>Reponses</th>
-
-
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="reponse: ${QCM.reponses1}">
-						<td th:text="${QCM.idQCM}"></td>
-						<td th:text="${QCM.titre}"></td>
-						<td th:text="${QCM.categorie}"></td>
-						<td th:text="${QCM.questions}"></td>
-						<td th:text="${reponse}"></td>
-
-
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		-->
 	</div>
 </body>
 </html>
