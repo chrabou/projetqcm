@@ -223,7 +223,7 @@ public class AppController {
 		double cumulReponse4 = 0;
 
 		double[][] TotalStat = new double[myQCM.getQuestions().size()][4];
-		System.out.println(StatReponses.toString());
+		//System.out.println(StatReponses.toString());
 		// On parcours toutes les questions du question
 		for (int col = 0; col < myQCM.getQuestions().size(); col++) {
 			// pour chaque question je parcours toutes les réponses des interntaites
@@ -273,7 +273,8 @@ public class AppController {
 			cumulReponse3 = 0;
 			cumulReponse4 = 0;
 		}
-
+		//On passe le nombre de personne ayant répondue a ce QCM a la vue
+		model.addAttribute("NbReponse", totalNumberQcmRepondu);
 		// On passe les statistiques du QCM a la vue
 		model.addAttribute("TotalStat", TotalStat);
 		// On passe le QCM en question a la vue

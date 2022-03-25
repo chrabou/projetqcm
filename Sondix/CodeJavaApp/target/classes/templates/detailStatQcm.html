@@ -19,8 +19,10 @@
 			</form>
 		</div>
 		<div>
-			<h2>Détails Statistiques du Sondage</h2>
-			<h2 th:text="${QCM.titre}"></h2>
+			<h2>Détails Statistiques du Sondage : </h2>
+			<h2 style="color: red;" th:text="${QCM.titre}"></h2> 
+				<h2>Nombre d'internautes ayant répondu : </h2>
+				<h2 style="color: orange;" th:text="${NbReponse}"></h2>
 		</div>
 
 		<div th:each="question: ${QCM.questions}">
