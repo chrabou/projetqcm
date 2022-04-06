@@ -19,10 +19,10 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		SimpleGrantedAuthority internaute = new SimpleGrantedAuthority("internaute");
-		SimpleGrantedAuthority employe = new SimpleGrantedAuthority("employe");
-		SimpleGrantedAuthority responsable = new SimpleGrantedAuthority("responsable");
-		SimpleGrantedAuthority directeur = new SimpleGrantedAuthority("directeur");
+		SimpleGrantedAuthority internaute = new SimpleGrantedAuthority("Internaute");
+		SimpleGrantedAuthority employe = new SimpleGrantedAuthority("Employe");
+		SimpleGrantedAuthority responsable = new SimpleGrantedAuthority("Responsable");
+		SimpleGrantedAuthority directeur = new SimpleGrantedAuthority("Directeur");
 
 		ArrayList<SimpleGrantedAuthority> authories = new ArrayList<>();
 		authories.add(internaute);
@@ -69,5 +69,9 @@ public class CustomUserDetails implements UserDetails {
 
 	public boolean hasRole(String roleName) {
 		return this.user.hasRole(roleName);
+	}
+	
+	public Long getIdUser() {
+		return user.getId();
 	}
 }

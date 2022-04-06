@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+<head>
+	<!-- On mets ici les informations concernant le style de la page,
+	le logo et le titre qu'aura l'onglet dans le naviguateur-->
+
+	<meta charset="UTF-8">
+	<title>Sondix - QCM réalisé </title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css" />
+	<link rel="icon" href="styles/images/sondix_logo-woBG.png" />
+</head>
+
+<body>
+	<div class="container text-center">
+
+		<div>
+			<form th:action="@{/retourInternaute}" method="post">
+				<input type="submit" value="Retour" />
+			</form>
+		</div>
+		<div>
+			<h1>Sondage</h1>
+			<h1 th:text="${QCM.titre}"></h1>
+		</div>
+
+		<div th:each="question: ${QCM.questions}">
+			<h3>Question</h3>
+			<h3 th:text="${questionStat.count}"></h3>
+			<h3 th:text="${question}"></h3>
+			<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}">
+				<label th:hidden="${reponseStat.count} ne ${Reponse[__${questionStat.index}__]}"
+					style="color: green; font-weight: bold;"> Réponse choisie </label>
+				<label th:text="${reponse}"></label>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

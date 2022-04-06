@@ -41,9 +41,20 @@ public class User {
 
 	@Column(name = "sexe", nullable = false, length = 20)
 	private String sexe;
+	
+	@Column(name = "fidelite", nullable = false, length = 20)
+	private int fidelite;
+
+	public int getFidelite() {
+		return fidelite;
+	}
+
+	public void setFidelite(int fidelite) {
+		this.fidelite = fidelite;
+	}
 
 	@Column(name = "role", nullable = false, length = 20)
-	private String role = "Employe";
+	private String role = "Internaute";
 
 	public String getRole() {
 		return role;

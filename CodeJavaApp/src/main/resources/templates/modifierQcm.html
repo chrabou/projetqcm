@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Modifier QCM Employé</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container text-center">
+		<div>
+			<form th:action="@{/retourEmploye}" method="post">
+				<input type="submit" value="Retour" />
+			</form>
+		</div>
+		<div>
+			<h1>Modification du QCM</h1>
+		</div>
+		<form th:action="@{/process_modification}" th:object="${modifQCM}" method="post"
+			style="max-width: 600px; margin: 0 auto;">
+			<div class="m-3">
+				<input type="text" name="titreancien" th:value="${QCM.titre}" hidden>
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Titre :</label>
+					<div class="col-8">
+						<input type="text" th:value="${QCM.titre}" name="titre" class="form-control" minlength="3"
+							required maxlength="50" />
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Catégorie :</label>
+					<div class="col-8">
+						<select class="form-control" name="categorie" th:value="${QCM.categorie}" required>
+							<option value="Animation Japonaise" th:selected="${QCM.categorie} eq 'Animation Japonaise'">
+								Animation
+								Japonaise</option>
+							<option value="Culture" th:selected="${QCM.categorie} eq 'Culture'">Culture</option>
+							<option value="Cinéma" th:selected="${QCM.categorie} eq 'Cinéma'">Cinéma</option>
+							<option value="Sport" th:selected="${QCM.categorie} eq 'Sport'">Sport</option>
+							<option value="Théatre" th:selected="${QCM.categorie} eq 'Théatre'">Théatre</option>
+							<option value="Voyage" th:selected="${QCM.categorie} eq 'Voyage'">Voyage</option>
+						</select>
+					</div>
+				</div>
+				<div th:each="question: ${QCM.questions}">
+					<h3>Question</h3>
+					<h3 th:text="${questionStat.count}"></h3>
+					<input type="text" id="reponseStat.index" th:name="questions" th:value="${question}"
+						class="form-control" minlength="3" required maxlength="50">
+					<h3>Réponses</h3>
+					<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}"
+						th:with="id=${questionStat.index}">
+						<input type="text" id="reponseStat.index" th:name="reponses__${questionStat.count}__"
+							th:value="${reponse}" class="form-control" minlength="3" required maxlength="50">
+					</div>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-primary">Valider</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

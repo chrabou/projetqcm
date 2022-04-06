@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
  
-	//fonction permettant la redirection en fonction du role de l'utilisateur quand il se connecte
+	//méthode permettant la redirection en fonction du role de l'utilisateur quand il se connecte
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws ServletException, IOException {
