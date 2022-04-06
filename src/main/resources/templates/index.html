@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- On mets ici les informations concernant le style de la page,
+	le logo et le titre qu'aura l'onglet dans le naviguateur-->
+	
+	<meta charset="UTF-8">
+	<title>Sondix- Plateforme de QCM en ligne</title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css" />
+	<link rel="icon" href="styles/images/sondix_logo-woBG.png" />
+</head>
+
+<body>
+	<h1>Bienvenue sur Sondix, votre plateforme de QCM en ligne</h1>
+	<br>
+	<div class="conteneur" id="conteneur">
+
+		<!-- PARTIE "STATIC" : deux panneaux qui bouge pas.
+		Leur but permet juste de cliquer sur les deux boutons qui redirigent vers d'autres pages.-->
+		<div class="panneau-statique statique-register">
+			<div class="formTest">
+				<h2>Créer un compte</h2>
+				<br>
+				<button onclick="window.location.href = '/register';">
+					S'inscrire</button>
+			</div>
+		</div>
+
+		<div class="panneau-statique statique-login">
+			<div class="formTest">
+				<h2>Connexion</h2>
+				<br>
+				<button onclick="window.location.href = '/login';">Se
+					connecter</button>
+			</div>
+		</div>
+
+		<!-- PARITE "SLIDE" : deux panneaux qui glisse gauche-droite/droite-gauche quand on clique 
+		sur un boutton.-->
+		<div class="conteneur-overlay">
+			<div class="overlay">
+				<div class="panneau-mobile mobile-gauche">
+					<h2>Vous voilà de retour!</h2>
+					<p>Pour reprendre vos QCM favoris, connectez-vous à l'aide de
+						vos identifiants</p>
+					<button class="fantome" id="boutonTransiConnexion">Connexion</button>
+				</div>
+				<div class="panneau-mobile mobile-droite">
+					<h2>Bienvenue !</h2>
+					<p>Renseignez vos informations personnelles pour débuter votre
+						aventure sur notre site.</p>
+					<button class="fantome" id="boutonTransiInscription">Inscription</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Script JS pour l'animation entre les deux panneaux Connexion/Inscription -->
+	<script src="./script.js"></script>
+
+	<!-- Le footer permet de mettre des informations simples concernant notre site (auteurs et versions ici) -->
+	<!-- J'ai aussi mis dans le footer le raccourci pour accéder a la listes de toutes nos utilisateurs -->
+	<footer>
+		<p>
+			©2022 - v5 Homepage(fonctionnel)- Groupe BNIK Bouchra - MENGUELTI
+			Hacène - PISANO Vincent <a th:href="@{/users}">Liste des
+				Utilisateurs</a>
+		</p>
+	</footer>
+
+</body>
+
+</html>
