@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
 <title>Sondix - connexion</title>
 <link rel="stylesheet" type="text/css" href="styles/style.css" />
 <link rel="icon" href="styles/images/sondix_logo-woBG.png" />
 </head>
+
 <body>
+
+	<style>
+body {
+	background-image:
+		url('https://img.wallpapersafari.com/desktop/1920/1080/36/59/hxXn2T.jpeg');
+	background-repeat: no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+</style>
 	<h1>Inscrivez-vous</h1>
 	<br>
 	<div class="conteneur">
 		<form th:action="@{/process_register}" th:object="${user}"
 			method="post">
 			<div class="conteneurSignUp">
-				<!-- Partie -->
-				<div class="droite">
+
+				<!-- Partie GAUCHE-->
+				<div class="gauche">
 					<div class="labeletinput">
 						<label class="label-formulaire">Pseudo :</label> <input
 							type="text" th:field="*{pseudo}" class="form-control"
@@ -45,7 +60,9 @@
 						<label class="labelEspace">Espace</label>
 					</div>
 				</div>
-				<div class="gauche">
+
+				<!-- PARTIE DROITE -->
+				<div class="droite">
 					<div class="labeletinput">
 						<label class="label-formulaire">Téléphone : </label> <input
 							type="tel" class="form-control" th:field="*{phone}" required
@@ -84,7 +101,8 @@
 					</div>
 					<br>
 					<div>
-						<button type="submit" class="btn btn-primary">S'inscrire</button>
+						<button style="margin-top: 5%;" type="submit"
+							class="btn btn-primary">S'inscrire</button>
 					</div>
 				</div>
 			</div>
@@ -92,12 +110,14 @@
 	</div>
 	<br>
 	<br>
-	<button>
-		<a th:href="@{/}">Retour au menu principal </a>
-	</button>
+
+	<button style="margin-top: 5%;" onclick="window.location.href = '/';">Retour
+		au menu principal</button>
+
 	<footer>
 		<p>©2022 - v1 Page d'inscription (fonctionnel)- Groupe BNIK
 			Bouchra - MENGUELTI Hacène - PISANO Vincent</p>
 	</footer>
 </body>
+
 </html>

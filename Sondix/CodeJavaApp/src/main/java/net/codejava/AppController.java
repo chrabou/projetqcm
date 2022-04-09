@@ -131,7 +131,7 @@ public class AppController {
 
 			userRepo.save(user);
 
-			return "register_success";
+			return "redirect:/login";
 		}
 	}
 
@@ -151,14 +151,43 @@ public class AppController {
 			@CurrentSecurityContext(expression = "authentication?.name") String username) {
 
 		myUser = userRepo.findByEmail2(username);
+
+		// Recupération des informations de l'utilisateurs actuellement connecté
 		int fidelite = myUser.getFidelite();
+		String email = myUser.getEmail();
+		String first_name = myUser.getFirstName();
+		String last_name = myUser.getLastName();
+		String pseudo = myUser.getPseudo();
+		String phone = myUser.getPhone();
+		String socio = myUser.getSocio();
+		String birth = myUser.getBirth();
+		String sexe = myUser.getSexe();
+		String role = myUser.getRole();
+
+		// On ajoute toutes les informations précedemmet récupérer et on les ajoutent au
+		// modele de la page
+		// cela nous permettra de les afficher et plus facilement.
+		model.addAttribute("fidelite", fidelite);
+		model.addAttribute("email", email);
+		model.addAttribute("first_name", first_name);
+		model.addAttribute("last_name", last_name);
+		model.addAttribute("pseudo", pseudo);
+		model.addAttribute("phone", phone);
+		model.addAttribute("socio", socio);
+		model.addAttribute("birth", birth);
+		model.addAttribute("sexe", sexe);
+		model.addAttribute("role", role);
+
+		/*
+		 * De la même maniere que nous sommes aller chercher les informations de
+		 * l'utilisateurs; cette fois-ci on récupere : une liste de QCM qui sont
+		 * diponibles pour lui une liste de QCM que l'utilisateurs a déja réalisé.
+		 */
 		List<QCM> listQcm = qcmRepo.findAllStatutValidateForInternaute(myUser.getId());
 		List<QCM> listQcmFait = qcmRepo.findAllStatutNotValidateForInternaute(myUser.getId());
-
-		// System.out.println("username : " + username );
-		model.addAttribute("fidelite", fidelite);
 		model.addAttribute("listQcmFait", listQcmFait);
 		model.addAttribute("listQcm", listQcm);
+
 		return "internaute";
 	}
 
@@ -223,7 +252,7 @@ public class AppController {
 		double cumulReponse4 = 0;
 
 		double[][] TotalStat = new double[myQCM.getQuestions().size()][4];
-		//System.out.println(StatReponses.toString());
+		// System.out.println(StatReponses.toString());
 		// On parcours toutes les questions du question
 		for (int col = 0; col < myQCM.getQuestions().size(); col++) {
 			// pour chaque question je parcours toutes les réponses des interntaites
@@ -273,7 +302,7 @@ public class AppController {
 			cumulReponse3 = 0;
 			cumulReponse4 = 0;
 		}
-		//On passe le nombre de personne ayant répondue a ce QCM a la vue
+		// On passe le nombre de personne ayant répondue a ce QCM a la vue
 		model.addAttribute("NbReponse", totalNumberQcmRepondu);
 		// On passe les statistiques du QCM a la vue
 		model.addAttribute("TotalStat", TotalStat);

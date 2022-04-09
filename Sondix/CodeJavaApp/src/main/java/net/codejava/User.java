@@ -41,7 +41,7 @@ public class User {
 
 	@Column(name = "sexe", nullable = false, length = 20)
 	private String sexe;
-	
+
 	@Column(name = "fidelite", nullable = false, length = 20)
 	private int fidelite;
 

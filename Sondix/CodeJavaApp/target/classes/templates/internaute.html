@@ -1,76 +1,217 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
 <meta charset="UTF-8">
-<title>Accueil Internaute</title>
-<link rel="stylesheet" type="text/css"
-	href="/webjars/bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<title>Accueil - Page Internaute</title>
+<link rel="stylesheet" type="text/css" href="styles/style.css" />
+<link rel="icon" href="styles/images/sondix_logo-woBG.png" />
+
+<!--
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	-->
+
 </head>
-<body>
-	<div class="container text-center">
-		<div>
-			<form th:action="@{/logout}" method="post">
-				<input type="submit" value="Déconnexion" />
-			</form>
-		</div>
-		<div>
-			<h1>Bienvenue sur la page de l'internaute</h1>
-			<span sec:authentication="principal.IdUser">IdUser</span> <span
-				sec:authentication="principal.FullName">FullName</span> <span
-				sec:authentication="principal.Username">Username</span> <span></span><br>
-			<label style="color: green; font-weight: bold; font-size: xx-large;">Points
-				de fidélité : </label> <label
-				style="color: green; font-weight: bold; font-size: xx-large;"
-				th:text="${fidelite}"></label>
-		</div>
-		<div>
-			<h3>Liste des QCM disponible</h3>
-		</div>
-		<div>
-			<table class="table table-striped table-bordered">
-				<thead class="thead-dark">
-					<tr>
-						<th>Titre</th>
-						<th>Catégorie</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="qcm: ${listQcm}">
-						<td th:text="${qcm.titre}"></td>
-						<td th:text="${qcm.categorie}"></td>
-						<td><a th:href="@{/faireQcm/{titre}(titre=${qcm.titre})}">Faire</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div>
-			<h3>Liste des QCM déjà fait</h3>
-		</div>
-		<div>
-			<table class="table table-striped table-bordered">
-				<thead class="thead-dark">
-					<tr>
-						<th>Titre</th>
-						<th>Catégorie</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="qcm: ${listQcmFait}">
-						<td th:text="${qcm.titre}"></td>
-						<td th:text="${qcm.categorie}"></td>
-						<td><a th:href="@{/voirQcm/{titre}(titre=${qcm.titre})}">Voire</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+
+<header>
+	<div class="barreNav">
+
+		<!-- <a class="active" th:href="@{/}"> Accueil - SONDIX </a> -->
+		<a class="tablinks" id="blackButton"
+			onclick="openTab(event, 'InfosPersos')">Informations personnelles</a>
+		<a class="tablinks" id="blackButton"
+			onclick="openTab(event, 'QCMDispo')">QCM Disponibles</a> <a
+			class="tablinks" id="blackButton" onclick="openTab(event, 'QCMFait')">QCM
+			réalisés</a> <a class="tablinks" id="blackButton"
+			onclick="openTab(event, 'Profil')">Points de fidélité</a> <a
+			class="tablinks" id="blackButton" onclick="openTab(event, 'fermer')">X</a>
+
+		<a class="logout" th:href="@{/}"> Deconnexion </a>
 	</div>
+
+</header>
+
+<body>
+
+
+	<style>
+body {
+	background-image:
+		url('https://focus.nouvelobs.com/2022/01/24/342/0/2362/1181/633/306/75/0/bb51fad_811577090-gettyimages-1221318531.jpg/webp');
+	background-size: 75% 50%;
+	background-repeat: no-repeat;
+	background-position: bottom;
+}
+</style>
+
+
+	<div>
+
+		<!-- DIV contenant l'affichage du message de bienvenue -->
+		<div>
+
+			<h1>
+				<label
+					style="color: #45B69C; font-weight: bold; font-size: xx-large;"
+					sec:authentication="principal.FullName">FullName</label>, bienvenue
+				sur votre page "internaute"
+			</h1>
+
+			<hr>
+			<hr>
+
+
+			<h2>Informations sur votre compte client</h2>
+			<p>Sélectionner l'onglet que vous souhaitez dans la barre de
+				navigation. Cela vous permettra d'accéder à vos informations
+				personnelles, aux QCM disponibles / réalisés ainsi qu'à vos points
+				de fidélité.</p>
+
+		</div>
+
+		<!-- DIV contenant les informations personnelles de l'internaute -->
+		<div id="InfosPersos" class="tabcontent">
+			<h3>Vos informations personnelles :</h3>
+
+			<label> <b> Nom : </b></label> <label th:text="${first_name}"></label>
+
+			<!-- Trouver une solution pour tout afficher correctement de novueau
+			<label sec:authentication="principal.FullName">FullName </label>
+ 			-->
+			<br> <br> <label><b> Prénom : </b></label> <label
+				th:text="${last_name}"></label> <br> <br> <label><b>
+					Email : </b></label> <label th:text="${email}"></label> <br> <br> <label><b>
+					Pseudonyme : </b></label> <label th:text="${pseudo}"></label> <br> <br>
+			<label><b> Numéro de téléphone : </b></label> <label
+				th:text="${phone}"></label> <br> <br> <label><b>
+					Date de naissance : </b></label> <label th:text="${birth}"></label> <br> <br>
+			<label><b> Catégorie socio-professionnel : </b></label> <label
+				th:text="${socio}"></label>
+
+		</div>
+
+		<!-- DIV contenant un tableau des QCM disponible pour l'internaute -->
+		<div id="QCMDispo" class="tabcontent">
+			<h3>Voici les QCM qui sont encore disponibles</h3>
+
+			<div>
+				<table class="table table-light  table-bordered"
+					style="background-color: white;">
+					<thead class="thead-dark">
+						<tr>
+
+							<th>Titre</th>
+							<th>Catégorie</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="qcm: ${listQcm}">
+							<td th:text="${qcm.titre}"></td>
+							<td th:text="${qcm.categorie}"></td>
+							<td style="text-align: center; vertical-align: middle;"><a
+								th:href="@{/faireQcm/{titre}(titre=${qcm.titre})}"
+								style="box-shadow: 3px 4px 0px 0px #1743d4; background: linear-gradient(to bottom, #1d67de 5%, #3bd2e3 100%); background-color: #1d67de; border-radius: 18px; border: 1px solid #1a43c9; display: inline-block; cursor: pointer; color: #ffffff; font-family: Arial; font-size: 17px; padding: 7px 25px; text-decoration: none; text-shadow: 0px 1px 0px #292c30;">Faire</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+		</div>
+
+		<!-- DIV contenant un tableau les QCM que l'internaute à réalisé -->
+		<div id="QCMFait" class="tabcontent">
+			<h3>Voici les QCM que vous avez réalisés</h3>
+
+			<div>
+				<table class="table table-light  table-bordered"
+					style="background-color: white;">
+					<thead class="thead-dark">
+						<tr>
+
+							<th>Titre</th>
+							<th>Catégorie</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="qcm: ${listQcmFait}">
+							<td th:text="${qcm.titre}"></td>
+							<td th:text="${qcm.categorie}"></td>
+							<td style="text-align: center; vertical-align: middle;"><a
+								th:href="@{/voirQcm/{titre}(titre=${qcm.titre})}"
+								style="box-shadow: 3px 4px 0px 0px #1743d4; background: linear-gradient(to bottom, #1d67de 5%, #3bd2e3 100%); background-color: #1d67de; border-radius: 18px; border: 1px solid #1a43c9; display: inline-block; cursor: pointer; color: #ffffff; font-family: Arial; font-size: 17px; padding: 7px 25px; text-decoration: none; text-shadow: 0px 1px 0px #292c30;">Voir</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- DIV contenant les points de fidélités que possede l'internaute -->
+		<div id="Profil" class="tabcontent">
+			<h3>Vos informations concernant vos points de fidélité</h3>
+
+			<br> <label> Points de fidélité : </label> <label
+				style="color: #45B69C; font-weight: bold; font-size: xx-large;"
+				th:text="${fidelite}"></label> <br>
+
+		</div>
+
+		<!-- 	SCRIPT JavaScript permettant au différents balise <a> qui l'a compose 
+			de pouvoir afficher un contenu d'une seule div lorsque l'on clique dessus
+	-->
+	</div>
+
+	<script>
+		function openTab(evt, cityName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+			document.getElementById(cityName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+	</script>
+
+
 </body>
+
 </html>
+
+<!-- POUR LA PAGINATION 
+		https://codepen.io/adminHT/pen/QWwOpPX
+-->
+
+<!-- ANCIENNE BARRE DE NAVIGUATION 5
+		<a href="#home">Home</a>
+		<a href="#news">News</a>
+		<a href="#contact">Contact</a>
+		<a href="#about">About</a>
+	-->
+
+<!-- AU CAS OU, ceci est un exemple de requete sur le userPrincipal (pas le plus efficace)
+	<p> Bienvenue <b>[[${#request.userPrincipal.principal.fullName}]]</b> </p> 
+	-->
+
+
+<!-- Autre moyen d'utiliser une information basé sur le user actif actuellement
+	<span sec:authentication="principal.Username">Username</span>
+
+	-->
+
+
+<!--	A ENLEVER OU REMETTRE AU MOMENT OU ON ARRIVE A RECUPERER LES
+						ATTRIBUTS DEPUIS AppControler.Java
+						
+		<label style="color :#45B69C;font-weight: bold;font-size: xx-large;" th:text="${last_name}"></label>
+		<label style="color :#45B69C;font-weight: bold;font-size: xx-large;" th:text="${first_name}"></label>
+	-->

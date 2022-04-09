@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
 <title>Modifier QCM Employé</title>
@@ -9,11 +10,25 @@
 <script type="text/javascript"
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-	<div class="container text-center">
+	<style>
+body {
+	background-image: url('https://images8.alphacoders.com/370/370977.jpg');
+	background-repeat: no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+</style>
+
+	<div class="container text-center"
+		style="background-color: white; width: 40%;">
 		<div>
 			<form th:action="@{/retourEmploye}" method="post">
-				<input type="submit" value="Retour" />
+				<input type="submit" value="Retour"
+					style="box-shadow: 3px 4px 0px 0px #1743d4; background: linear-gradient(to bottom, #1d67de 5%, #3bd2e3 100%); background-color: #1d67de; border-radius: 18px; border: 1px solid #1a43c9; display: inline-block; cursor: pointer; color: #ffffff; font-family: Arial; font-size: 17px; padding: 7px 25px; text-decoration: none; text-shadow: 0px 1px 0px #292c30; margin-top: 5%; margin-top: 5%;" />
 			</form>
 		</div>
 		<div>
@@ -24,20 +39,21 @@
 			<div class="m-3">
 				<input type="text" name="titreancien" th:value="${QCM.titre}" hidden>
 				<div class="form-group row">
-					<label class="col-4 col-form-label">Titre :</label>
+					<h3>Titre
+						:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
 					<div class="col-8">
 						<input type="text" th:value="${QCM.titre}" name="titre"
 							class="form-control" minlength="3" required maxlength="50" />
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-4 col-form-label">Catégorie :</label>
+					<h3>Catégorie :&nbsp;&nbsp;&nbsp;</h3>
 					<div class="col-8">
 						<select class="form-control" name="categorie"
 							th:value="${QCM.categorie}" required>
 							<option value="Animation Japonaise"
-								th:selected="${QCM.categorie} eq 'Animation Japonaise'">Animation
-								Japonaise</option>
+								th:selected="${QCM.categorie} eq 'Animation Japonaise'">
+								Animation Japonaise</option>
 							<option value="Culture"
 								th:selected="${QCM.categorie} eq 'Culture'">Culture</option>
 							<option value="Cinéma" th:selected="${QCM.categorie} eq 'Cinéma'">Cinéma</option>
@@ -49,24 +65,42 @@
 					</div>
 				</div>
 				<div th:each="question: ${QCM.questions}">
-					<h3>Question</h3>
-					<h3 th:text="${questionStat.count}"></h3>
-					<input type="text" id="reponseStat.index" th:name="questions"
-						th:value="${question}" class="form-control" minlength="3" required
-						maxlength="50">
-					<h3>Réponses</h3>
-					<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}"
-						th:with="id=${questionStat.index}">
-						<input type="text" id="reponseStat.index"
-							th:name="reponses__${questionStat.count}__" th:value="${reponse}"
-							class="form-control" minlength="3" required maxlength="50">
+					<div class="form-group row">
+						<h3>Question&nbsp;&nbsp;</h3>
+						<h3 th:text="${questionStat.count}"></h3>
+						</h3>
+						<h3>&nbsp;:</h3>
+						<div class="col-8">
+							<input type="text" id="reponseStat.index" th:name="questions"
+								th:value="${question}" class="form-control" minlength="3"
+								required maxlength="50">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<h3>Réponses&nbsp;</h3>
+						<h3 th:text="${questionStat.count}"></h3>
+						<h3>&nbsp;:</h3>
+						<div class="col-8">
+							<div
+								th:each="reponse :  ${QCM.reponses__${questionStat.count}__}"
+								th:with="id=${questionStat.index}">
+								<input type="text" id="reponseStat.index"
+									th:name="reponses__${questionStat.count}__"
+									th:value="${reponse}" class="form-control" minlength="3"
+									required maxlength="50">
+
+							</div>
+						</div>
 					</div>
 				</div>
 				<div>
-					<button type="submit" class="btn btn-primary">Valider</button>
+					<button type="submit" class="btn btn-primary"
+						style="margin-bottom: 5%; box-shadow: 3px 4px 0px 0px #147515; background: linear-gradient(to bottom, #24b53c 5%, #18db60 100%); background-color: #24b53c; border-radius: 18px; border: 1px solid #2f6630; cursor: pointer; color: #ffffff; font-family: Arial; font-size: 17px; padding: 7px 25px; text-decoration: none; text-shadow: 0px 1px 0px #292c30;">Valider</button>
 				</div>
 			</div>
 		</form>
 	</div>
 </body>
+
 </html>

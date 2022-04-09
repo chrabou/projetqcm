@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
 <meta charset="UTF-8">
 <title>Détail Statistique QCM Directeur</title>
@@ -10,34 +11,142 @@
 <script type="text/javascript"
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
+
 <body>
+	<style>
+body {
+	background-image: url('https://images8.alphacoders.com/370/370977.jpg');
+	background-repeat: no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+</style>
+
+
+
+	<div class="container text-center"
+		style="background-color: white; width: 40%;">
+
+		<div>
+			<form th:action="@{/retourDirecteur}" method="post">
+				<input type="submit" value="Retour"
+					style="box-shadow: 3px 4px 0px 0px #1743d4; background: linear-gradient(to bottom, #1d67de 5%, #3bd2e3 100%); background-color: #1d67de; border-radius: 18px; border: 1px solid #1a43c9; display: inline-block; cursor: pointer; color: #ffffff; font-family: Arial; font-size: 17px; padding: 7px 25px; text-decoration: none; text-shadow: 0px 1px 0px #292c30; margin-top: 5%; margin-bottom: 5%;" />
+			</form>
+		</div>
+		<div>
+			<h1>Statistiques du Sondage :</h1>
+		</div>
+		<form th:action="@{/process_modification}" th:object="${modifQCM}"
+			method="post" style="max-width: 600px; margin: 0 auto;">
+			<div class="m-3">
+				<input type="text" name="titreancien" th:value="${QCM.titre}" hidden>
+				<div class="form-group row">
+					<h3>Titre
+						:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+					<div class="col-8">
+						<input disabled type="text" th:value="${QCM.titre}" name="titre"
+							class="form-control" minlength="3" required maxlength="50" />
+					</div>
+				</div>
+				<div class="form-group row">
+					<h3>Nombre d'internautes ayant répondu :&nbsp;</h3>
+					<h3 style="color: black;" th:text="${NbReponse}"></h3>
+
+				</div>
+
+
+
+				<div class="form-group row">
+					<h3>Catégorie :&nbsp;&nbsp;&nbsp;</h3>
+					<div class="col-8">
+						<select disabled class="form-control" name="categorie"
+							th:value="${QCM.categorie}" required>
+							<option value="Animation Japonaise"
+								th:selected="${QCM.categorie} eq 'Animation Japonaise'">
+								Animation Japonaise</option>
+							<option value="Culture"
+								th:selected="${QCM.categorie} eq 'Culture'">Culture</option>
+							<option value="Cinéma" th:selected="${QCM.categorie} eq 'Cinéma'">Cinéma</option>
+							<option value="Sport" th:selected="${QCM.categorie} eq 'Sport'">Sport</option>
+							<option value="Théatre"
+								th:selected="${QCM.categorie} eq 'Théatre'">Théatre</option>
+							<option value="Voyage" th:selected="${QCM.categorie} eq 'Voyage'">Voyage</option>
+						</select>
+					</div>
+				</div>
+				<div th:each="question: ${QCM.questions}">
+					<div class="form-group row">
+						<h3>Question&nbsp;&nbsp;</h3>
+						<h3 th:text="${questionStat.count}"></h3>
+
+						<h3>&nbsp;:</h3>
+						<div class="col-8">
+							<input disabled type="text" id="reponseStat.index"
+								th:name="questions" th:value="${question}" class="form-control"
+								minlength="3" required maxlength="50">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<h3>Réponses&nbsp;&nbsp;&nbsp;</h3>
+
+						<h3>&nbsp;:</h3>
+						<div class="col-8">
+							<div
+								th:each="reponse :  ${QCM.reponses__${questionStat.count}__}"
+								th:with="id=${questionStat.index}">
+								<input disabled type="text" id="reponseStat.index"
+									th:name="reponses__${questionStat.count}__"
+									th:value="${reponse}" class="form-control" minlength="3"
+									required maxlength="50"> <label
+									th:text="${TotalStat[__questionStat.index__][reponseStat.index]}"
+									style="color: green; font-weight: bold;"></label> <label
+									style="color: green; font-weight: bold;">%</label>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</form>
+		<p style="margin-bottom: 5%;">&nbsp;</p>
+	</div>
+
+
+	<!-- 
+
+
 	<div class="container text-center">
 
+		<div>
+			<h2>Détails Statistiques du Sondage : </h2>
+			<h2 style="color: red;" th:text="${QCM.titre}"></h2>
+			<h2>Nombre d'internautes ayant répondu : </h2>
+			<h2 style="color: orange;" th:text="${NbReponse}"></h2>
+		</div>
+
+		<div th:each="question: ${QCM.questions}">
+			<label style="font-size: xx-large;">Question </label> <label style="font-size: xx-large;"
+				th:text="${questionStat.count}"></label>
+			<h4 th:text="${question}"></h4>
+			<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}">
+
+				<label th:text="${TotalStat[__questionStat.index__][reponseStat.index]}"
+					style="color: green; font-weight: bold;"></label> <label style="color: green; font-weight: bold;">%
+				</label> <label th:text="${reponse}"></label>
+			</div>
+		</div>
 		<div>
 			<form th:action="@{/retourDirecteur}" method="post">
 				<input type="submit" value="Retour" />
 			</form>
 		</div>
-		<div>
-			<h2>Détails Statistiques du Sondage : </h2>
-			<h2 style="color: red;" th:text="${QCM.titre}"></h2> 
-				<h2>Nombre d'internautes ayant répondu : </h2>
-				<h2 style="color: orange;" th:text="${NbReponse}"></h2>
-		</div>
-
-		<div th:each="question: ${QCM.questions}">
-			<label style="font-size: xx-large;">Question </label> <label
-				style="font-size: xx-large;" th:text="${questionStat.count}"></label>
-			<h4 th:text="${question}"></h4>
-			<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}">
-
-				<label
-					th:text="${TotalStat[__questionStat.index__][reponseStat.index]}"
-					style="color: green; font-weight: bold;"></label> <label
-					style="color: green; font-weight: bold;">% </label> <label
-					th:text="${reponse}"></label>
-			</div>
-		</div>
 	</div>
+ -->
+
 </body>
+
 </html>

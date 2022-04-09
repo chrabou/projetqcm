@@ -25,8 +25,8 @@ public class QCM {
 	private String categorie;
 
 	@Column(name = "statut", nullable = false, length = 50)
-	private String statut="Créé";
-	
+	private String statut = "Créé";
+
 	@Column(name = "commentaire", nullable = true, length = 50)
 	private String commentaire;
 
@@ -89,11 +89,11 @@ public class QCM {
 	@Column(name = "questions", nullable = false, length = 512)
 	@Convert(converter = StringListConverter.class)
 	private List<String> questions;
-	
+
 	@Column(name = "reponses1", nullable = false, length = 255)
 	@Convert(converter = StringListConverter.class)
 	private List<String> reponses1;
-	
+
 	public List<String> getReponses2() {
 		return reponses2;
 	}
@@ -169,38 +169,37 @@ public class QCM {
 	@Column(name = "reponses2", nullable = true, length = 255)
 	@Convert(converter = StringListConverter.class)
 	private List<String> reponses2;
-	
+
 	@Column(name = "reponses3", nullable = true, length = 255)
 	@Convert(converter = StringListConverter.class)
 	private List<String> reponses3;
-	
+
 	@Column(name = "reponses4", nullable = true, length = 255)
 	@Convert(converter = StringListConverter.class)
 	private List<String> reponses4;
-	
+
 	@Column(name = "reponses5", nullable = true, length = 255)
 	@Convert(converter = StringListConverter.class)
 	private List<String> reponses5;
-	
+
 	@Column(name = "reponses6", nullable = true, length = 255)
 	@Convert(converter = StringListConverter.class)
 	private List<String> reponses6;
-	
+
 	@Column(name = "reponses7", nullable = true, length = 255)
 	@Convert(converter = StringListConverter.class)
 	private List<String> reponses7;
-	
+
 	@Column(name = "reponses8", nullable = true, length = 255)
 	@Convert(converter = StringListConverter.class)
 	private List<String> reponses8;
-	
+
 	@Column(name = "reponses9", nullable = true, length = 255)
 	@Convert(converter = StringListConverter.class)
 	private List<String> reponses9;
-	
+
 	@Column(name = "reponses10", nullable = true, length = 255)
 	@Convert(converter = StringListConverter.class)
 	private List<String> reponses10;
 
-	
 }

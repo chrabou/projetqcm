@@ -11,33 +11,60 @@
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container text-center">
+
+	<style>
+body {
+	background-image: url('https://images8.alphacoders.com/370/370977.jpg');
+	background-repeat: no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+</style>
+
+	<div class="container text-center"
+		style="background-color: white; width: 40%; margin-left: auto; margin-right: auto;">
+
+
 		<div>
 			<form th:action="@{/retourInternaute}" method="post">
-				<input type="submit" value="Retour" />
+				<input type="submit" value="Retour"
+					style="box-shadow: 3px 4px 0px 0px #1743d4; background: linear-gradient(to bottom, #1d67de 5%, #3bd2e3 100%); background-color: #1d67de; border-radius: 18px; border: 1px solid #1a43c9; display: inline-block; cursor: pointer; color: #ffffff; font-family: Arial; font-size: 17px; padding: 7px 25px; text-decoration: none; text-shadow: 0px 1px 0px #292c30; margin-top: 5%; margin-bottom: 5%;" />
 			</form>
 		</div>
-		<div>
-			<h1>Sondage</h1>
+		<div class="form-group row">
+			<h1>&nbsp;&nbsp;QCM :&nbsp;</h1>
 			<h1 th:text="${QCM.titre}"></h1>
+
 		</div>
 		<form th:action="@{/registerResponses}" method="post"
 			th:object="${QCMRepondu}">
 			<input type="text" name="titre" th:value="${QCM.titre}" hidden>
-			<div th:each="question: ${QCM.questions}">
-				<h3>Question</h3>
-				<h3 th:text="${questionStat.count}"></h3>
-				<h3 th:text="${question}"></h3>
+			<div th:each="question: ${QCM.questions}" class="form-group row">
+				<h5>&nbsp;&nbsp;&nbsp;Question &nbsp;</h5>
+				<h5 th:text="${questionStat.count}"></h5>
+				<h5>&nbsp;:&nbsp;</h5>
+				<h5 th:text="${question}"></h5>
+				<br />
+				<p>&nbsp;&nbsp;&nbsp;</p>
+				<br> &nbsp;<br>
 				<div th:each="reponse :  ${QCM.reponses__${questionStat.count}__}"
 					th:with="id=${questionStat.index}">
 					<input type="radio" id="reponseStat.index" name="reponse1"
 						th:field="*{reponses[__${id}__]}" th:value="${reponseStat.count}"
 						required> <label for="reponseStat.index"
-						th:text="${reponse}"></label>
+						th:text="${reponse}"></label><label>&nbsp;&nbsp;</label>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Envoyer</button>
+			<button type="submit" class="btn btn-primary"
+				style="margin-bottom: 5%; box-shadow: 3px 4px 0px 0px #147515; background: linear-gradient(to bottom, #24b53c 5%, #18db60 100%); background-color: #24b53c; border-radius: 18px; border: 1px solid #2f6630; cursor: pointer; color: #ffffff; font-family: Arial; font-size: 17px; padding: 7px 25px; text-decoration: none; text-shadow: 0px 1px 0px #292c30;">Envoyer</button>
 		</form>
+
 	</div>
+
+
+
+
 </body>
 </html>
