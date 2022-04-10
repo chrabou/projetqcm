@@ -1,3 +1,5 @@
+Vidéo de démonstration du Projet TER Sondix : https://www.youtube.com/watch?v=RUYqQDCabR4
+
 Pour commencer, il faut installer MySQL, pour cela regardez cette vidéo : https://www.youtube.com/watch?v=rr4bXOZ5TyY&t=1s.
 
 Une fois la base de données MySQL installée, il faut créer la database sondixdb comme ceci : 'CREATE DATABASE "sondixdb";'.
